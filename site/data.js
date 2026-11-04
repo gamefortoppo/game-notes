@@ -343,6 +343,103 @@ const CHARACTERS = [
     notes: [],
   },
 
+  {
+    id: "diona",
+    name: "Diona",
+    title: "Đặc Chế Quán Rượu Đuôi Mèo",
+    rarity: 4,
+    element: "cryo",
+    weapon: "bow",
+    role: "Support / Healer",
+    region: "Mondstadt",
+    icon: IMG + "4/40/Diona_Icon.png/revision/latest",
+
+    summary:
+      "Hỗ trợ Băng vừa tạo khiên vừa hồi máu. E tạo khiên theo Giới hạn HP và gắn Băng cho nhân vật được bảo vệ, Q tạo vùng liên tục gây ST Băng lên quái và hồi máu cho đồng đội. Từ Cung Mệnh 6, nhân vật đứng trong vùng Q còn được +200 Tinh Thông Nguyên Tố.",
+
+    // Tên + icon kỹ năng: genshin-impact.fandom.com/vi/wiki/Diona
+    skills: [
+      {
+        key: "BA",
+        name: "Xạ Thuật Thợ Săn",
+        icon: IMG + "a/a9/Bow_Cryo.png/revision/latest",
+        desc: "Tấn Công Thường tối đa 5 lần bắn tên. Trọng Kích là ngắm bắn: tụ lực đủ lâu thì mũi tên mang hơi lạnh, gây ST Băng.",
+      },
+      {
+        key: "E",
+        name: "Móng Mèo Lạnh Giá",
+        icon: IMG + "e/e9/Talent_Icy_Paws.png/revision/latest",
+        desc: "Bắn Móng Mèo Lạnh Giá gây ST Băng và tạo khiên khi trúng quái. Khiên dày theo Giới hạn HP của Diona, trụ lâu theo số móng bắn trúng, hấp thụ ST Băng hiệu quả gấp 2.5 lần và gắn Băng cho nhân vật được bảo vệ.\nNhấn: bắn nhanh 2 móng (hồi chiêu 6s). Nhấn giữ: lùi lại bắn 5 móng, khiên dày thêm 75% (hồi chiêu 15s).\nĐứng trong khiên được tăng 10% tốc độ chạy và giảm 10% tiêu hao thể lực (nội tại bậc 1).",
+      },
+      {
+        key: "Q",
+        name: "Đặc Chế Mãnh Liệt",
+        icon: IMG + "5/57/Talent_Signature_Mix.png/revision/latest",
+        desc: "Ném viên đá đặc chế gây ST Băng diện rộng, tạo vùng Hơi Rượu Băng trong 12s. Cứ 2s, vùng gây ST Băng lên quái và hồi máu theo Giới hạn HP cho nhân vật đứng trong vùng. Quái trong vùng bị giảm 10% Tấn Công (nội tại bậc 4). Tốn 80 năng lượng.\nCung Mệnh 6: nhân vật đứng trong vùng còn trên 50% HP được +200 Tinh Thông Nguyên Tố, dưới 50% HP thì được tăng 30% lượng trị liệu nhận vào.",
+      },
+    ],
+
+    teams: [
+      {
+        name: "Tinh-Siêu Dẫn",
+        members: ["sandrone", "alyosha", "diona", "sucrose"],
+        rotation: [
+          { char: "diona", actions: ["E giữ", "Q"],
+            why: "Luôn giữ E để có khiên dày nhất, kèm theo tăng tốc chạy và giảm tiêu hao thể lực. Sau đó bật Q ngay để gắn ấn Băng lên quái và mở vùng hồi máu cho cả đội." },
+          { char: "sucrose", actions: ["E", "Q"],
+            why: "Khuếch tán Băng để gom quái lại gần. Nếu Sucrose mang 4 món Bóng Hình Màu Xanh, quái còn bị giảm Kháng Băng." },
+          { char: "alyosha", actions: ["E", "Q"],
+            why: "Bấm E gắn Dấu Ấn Săn Bắn rồi bật Q gọi Tugarin. Lôi của Alyosha gặp ấn Băng mà Diona vừa gắn sẽ kích hoạt Tinh-Siêu Dẫn và mở ra Vùng Trục Sao." },
+          { char: "sandrone", actions: ["CA giữ"],
+            why: "Giữ trọng kích để Fagio vào chế độ Giải Mã, đứng trong vùng Q của Diona để vừa được hồi máu vừa ăn buff của Vùng Trục Sao. Nếu Diona có Cung Mệnh 6, Sandrone còn được +200 Tinh Thông, mà Tinh Thông lại tăng sát thương Tinh-Siêu Dẫn." },
+          { char: "sandrone", actions: ["E"],
+            why: "Khi Công Suất Giải Mã đã lên cao (trên 50, tốt nhất là gần mốc 100), bấm E để hạ công suất xuống và nhận tầng Chiến Thuật Cải Tiến.",
+            warn: "Đừng để Fagio chạm 100 rồi mới xử lý, vì lúc đó Fagio Quá Tải, bắn chậm hẳn." },
+          { char: "sandrone", actions: ["CA giữ", "Q"],
+            why: "Giữ trọng kích thêm một vòng rồi kết thúc bằng Q khi vẫn còn đứng trong Vùng Trục Sao." },
+        ],
+      },
+    ],
+
+    build: {
+      stats: [
+        { label: "Giới hạn HP", target: "25.000–30.000+",
+          note: "Độ dày khiên của E và lượng hồi máu của Q đều tính theo Giới hạn HP của Diona." },
+        { label: "Hiệu quả nạp", target: "180–200%+",
+          note: "Q tốn tới 80 năng lượng, mà vùng Q là nguồn hồi máu (và buff Tinh Thông nếu có Cung Mệnh 6) nên cần có lại mỗi vòng." },
+      ],
+      artifacts: [
+        { set: "Thiên Nham Vững Chắc", pieces: 2,
+          icon: IMG + "5/51/Item_Flower_of_Accolades.png/revision/latest",
+          note: "2 món: +20% HP." },
+        { set: "Thiếu Nữ Đáng Yêu", pieces: 2,
+          icon: IMG + "d/dc/Item_Maiden%27s_Distant_Love.png/revision/latest",
+          note: "2 món: +15% hiệu quả trị liệu.\nCó thể thay bằng 2 món Xà Cừ Đại Dương, hiệu ứng 2 món giống hệt." },
+      ],
+      mainStats: [
+        { slot: "Đồng hồ", stat: "% HP", note: "Hoặc % Hiệu Quả Nạp nếu thấy Q hay bị thiếu năng lượng." },
+        { slot: "Ly",      stat: "% HP", note: "Khiên càng dày." },
+        { slot: "Nón",     stat: "% HP / Tăng Trị Liệu", note: "Muốn hồi máu nhiều hơn thì chọn Tăng Trị Liệu, muốn khiên trâu hơn thì chọn % HP." },
+      ],
+      weapons: [
+        { tier: "5★", name: "Tiếng Thở Dài Vô Tận",
+          icon: IMG + "a/a5/Weapon_Elegy_for_the_End.png/revision/latest",
+          note: "Dòng phụ Hiệu quả nạp. E hoặc Q trúng quái đủ 4 lần thì cả đội +100 Tinh Thông và +20% Tấn Công trong 12s." },
+        { tier: "4★", name: "Cung Tế Lễ",
+          icon: IMG + "e/ec/Weapon_Sacrificial_Bow.png/revision/latest",
+          note: "Dòng phụ Hiệu quả nạp. E gây sát thương có 40% tỷ lệ làm mới hồi chiêu (R1), được dùng E thêm lần nữa để có thêm khiên và hạt năng lượng." },
+        { tier: "4★", name: "Cung Tây Phong",
+          icon: IMG + "8/85/Weapon_Favonius_Warbow.png/revision/latest",
+          note: "Đòn bạo kích tạo thêm hạt năng lượng cho đội. Cần có Tỷ Lệ Bạo Kích ở dòng phụ." },
+        { tier: "3★", name: "Cung Phản Khúc",
+          icon: IMG + "b/b5/Weapon_Recurve_Bow.png/revision/latest",
+          note: "Lựa chọn miễn phí, dòng phụ % HP cao giúp khiên dày hơn." },
+      ],
+    },
+
+    notes: [],
+  },
+
   // ---- Nhân vật phụ: điền thêm build / rotation sau ----
   { id: "xilonen", name: "Xilonen", rarity: 5, element: "geo",  weapon: "sword",    role: "Support", region: "Natlan",
     icon: IMG + "a/ab/Xilonen_Icon.png/revision/latest" },
@@ -350,8 +447,6 @@ const CHARACTERS = [
     icon: IMG + "7/79/Bennett_Icon.png/revision/latest" },
   { id: "citlali", name: "Citlali", rarity: 5, element: "cryo", weapon: "catalyst", role: "Support", region: "Natlan",
     icon: IMG + "d/dd/Citlali_Icon.png/revision/latest" },
-  { id: "diona",   name: "Diona",   rarity: 4, element: "cryo",  weapon: "bow",      role: "Support", region: "Mondstadt",
-    icon: IMG + "4/40/Diona_Icon.png/revision/latest" },
   { id: "sucrose", name: "Sucrose", rarity: 4, element: "anemo", weapon: "catalyst", role: "Support", region: "Mondstadt",
     icon: IMG + "0/0e/Sucrose_Icon.png/revision/latest" },
 ];
