@@ -533,7 +533,103 @@ const CHARACTERS = [
     notes: [],
   },
 
+  {
+    id: "mitya",
+    name: "Mitya",
+    title: "Vạn Luật Hư Danh",
+    rarity: 5,
+    element: "electro",
+    weapon: "catalyst",
+    role: "Main DPS / Sub-DPS",
+    region: "Snezhnaya",
+    icon: IMG + "f/fd/Mitya_Icon.png/revision/latest",
+
+    summary:
+      "DPS Lôi xoay quanh Tinh-Siêu Dẫn và Tinh Thông Nguyên Tố. Khi có Mitya, Tinh-Siêu Dẫn không tạo Pha Lê Tinh Huy nữa mà tạo Tín Hiệu Biến Đổi, Mitya mang theo các tín hiệu này để mở Vùng Trục Sao rộng hơn. Sau đó Mitya dùng Trọng Kích đặc biệt tiêu hao tín hiệu, mỗi tín hiệu gây một đòn ST Lôi tính là sát thương Tinh-Siêu Dẫn.",
+
+    // Tên kỹ năng: mục "Other Languages" trên genshin-impact.fandom.com/wiki/Mitya (wiki vi chưa có trang kỹ năng)
+    skills: [
+      {
+        key: "BA",
+        name: "Phản Ứng Dây Chuyền",
+        icon: IMG + "e/e7/Catalyst_Electro.png/revision/latest",
+        desc: "Tấn Công Thường tối đa 3 đòn ST Lôi. Trọng Kích tiêu hao thể lực, gây ST Lôi diện rộng phía trước.\nNếu trên sân đang có Lõi Dò Tìm ở trạng thái Quá Tải do Mitya tạo ra và Mitya có ít nhất 1 Tín Hiệu Biến Đổi, Trọng Kích đổi thành Kích Nổ Biến Đổi: không tốn thể lực, giữ nút để liên tục tiêu hao tín hiệu, mỗi tín hiệu gây một đòn ST Lôi diện rộng tính là ST Tinh-Siêu Dẫn (theo Tinh Thông Nguyên Tố).",
+      },
+      {
+        key: "E",
+        name: "Quy Luật - Dò Tìm Biến Số",
+        icon: IMG + "0/00/Talent_Principle_Variable_Detection.png/revision/latest",
+        desc: "Gây ST Lôi diện rộng và tạo Lõi Dò Tìm tồn tại 25s (hồi chiêu 18s). Nhấn và nhấn giữ sẽ tạo lõi theo cách khác nhau. Bấm E lần nữa trong vòng 6s thì đổi trạng thái của lõi, tối đa mỗi 1.5s một lần.\nLõi Ổn Định: cả đội được +30 Tinh Thông cho mỗi Tín Hiệu Biến Đổi Mitya đang có. Lõi Quá Tải: sau khi đồng đội kích hoạt Tinh-Siêu Dẫn, cứ 1.5s Mitya nhận 1 tín hiệu, trong 6s (nội tại bậc 1).",
+      },
+      {
+        key: "Q",
+        name: "Phân Tích - Nguyên Lý Biến Đổi",
+        icon: IMG + "d/df/Talent_Analysis_Gradient_Theory.png/revision/latest",
+        desc: "Gây ST Lôi diện rộng (theo cả Tấn Công lẫn Tinh Thông) và tạo ngay 3 Tín Hiệu Biến Đổi. Tốn 60 năng lượng, hồi chiêu 15s.\nTín hiệu tồn tại 10s. Mỗi lần tạo tín hiệu, Mitya được +5% Tỷ Lệ Bạo Kích trong 15s, cộng dồn tối đa 4 lần (nội tại bậc 4).",
+      },
+    ],
+
+    teams: [
+      {
+        name: "Tinh-Siêu Dẫn",
+        members: ["mitya", "sandrone", "odette", "alyosha"],
+        rotation: [
+          { char: "odette", actions: ["E", "Q"],
+            why: "E gọi bóng múa của Odette ra sân, liên tục gây ST Băng diện rộng. Nhờ vậy quái luôn có ấn Băng để Lôi của Alyosha và Mitya kích hoạt Tinh-Siêu Dẫn." },
+          { char: "alyosha", actions: ["E", "Q"],
+            why: "Bấm E gắn Dấu Ấn Săn Bắn rồi bật Q gọi Tugarin. Tugarin cắn trúng quái có dấu sẽ tăng Tấn Công cho nhân vật đứng sân, Lôi của Alyosha gặp ấn Băng thì kích hoạt Tinh-Siêu Dẫn." },
+          { char: "sandrone", actions: ["E", "Q"],
+            why: "Sandrone xả E và Q để gây ST Băng diện rộng, tiếp tục kích hoạt Tinh-Siêu Dẫn. Với Mitya trong đội, mỗi lần Tinh-Siêu Dẫn sẽ tạo Tín Hiệu Biến Đổi cho Mitya nhặt." },
+          { char: "mitya", actions: ["E giữ", "Q"],
+            why: "Dùng E để tạo Lõi Dò Tìm ở trạng thái Quá Tải, rồi bật Q để có ngay 3 Tín Hiệu Biến Đổi. Mỗi tín hiệu còn cộng thêm Tỷ Lệ Bạo Kích cho Mitya.",
+            warn: "Lõi phải ở trạng thái Quá Tải thì Trọng Kích mới đổi thành Kích Nổ Biến Đổi. Nếu lõi đang ở trạng thái Ổn Định, bấm E thêm một lần trong 6s để đổi trạng thái." },
+          { char: "mitya", actions: ["CA giữ"],
+            why: "Giữ trọng kích để xả Kích Nổ Biến Đổi, tiêu hết số tín hiệu đang mang. Mỗi tín hiệu là một đòn ST Lôi tính là sát thương Tinh-Siêu Dẫn. Trong lúc đó đồng đội tiếp tục kích hoạt Tinh-Siêu Dẫn sẽ nạp thêm tín hiệu cho Mitya." },
+        ],
+      },
+    ],
+
+    build: {
+      stats: [
+        { label: "Bạo kích", target: "~50% / 200%+",
+          note: "Tỷ lệ bạo kích / ST bạo kích. Nội tại bậc 4 cộng thêm tới 20% Tỷ Lệ Bạo Kích khi Mitya tạo tín hiệu, nên không cần dồn quá nhiều Tỷ Lệ Bạo Kích ở dòng phụ." },
+        { label: "Tinh Thông Nguyên Tố", target: "300–500",
+          note: "Đòn Kích Nổ Biến Đổi tính sát thương theo Tinh Thông, nên Tinh Thông càng cao thì Mitya đánh càng đau." },
+        { label: "Hiệu quả nạp", target: "~120%",
+          note: "Q chỉ tốn 60 năng lượng, nạp vừa đủ để có Q mỗi vòng là được." },
+      ],
+      artifacts: [
+        { set: "Giấc Mộng Hoàng Kim", pieces: 4,
+          icon: IMG + "0/0c/Item_Dreaming_Steelbloom.png/revision/latest",
+          note: "2 món: +80 Tinh Thông.\n4 món: trong 8s sau khi kích hoạt phản ứng, mỗi đồng đội cùng nguyên tố cho +14% Tấn Công, mỗi đồng đội khác nguyên tố cho +50 Tinh Thông (tính tối đa 3 người). Đứng ngoài sân vẫn kích hoạt được." },
+      ],
+      mainStats: [
+        { slot: "Đồng hồ", stat: "Tinh Thông Nguyên Tố", note: "Tinh Thông làm tăng trực tiếp sát thương Tinh-Siêu Dẫn của Mitya." },
+        { slot: "Ly",      stat: "Tinh Thông Nguyên Tố", note: "Hoặc Tăng ST Lôi nếu chơi đứng sân, dồn bạo kích." },
+        { slot: "Nón",     stat: "Tỷ Lệ / ST Bạo Kích", note: "Chọn theo dòng phụ cho cân." },
+      ],
+      weapons: [
+        { tier: "Trấn", name: "Starsealed Edict",
+          icon: IMG + "3/35/Weapon_Starsealed_Edict.png/revision/latest",
+          note: "Pháp khí 5★ ra cùng Mitya, wiki chưa có tên tiếng Việt. Dòng phụ ST Bạo Kích, dùng E thì tăng Tinh Thông. Khi đang Tỏa Sáng, còn tăng ST Bạo Kích cho Tinh-Siêu Dẫn của người cầm." },
+        { tier: "5★ thay thế", name: "Chân Ý Của Kagura",
+          icon: IMG + "b/b7/Weapon_Kagura%27s_Verity.png/revision/latest",
+          note: "Dòng phụ ST Bạo Kích. Mỗi lần dùng E được +12% ST Kỹ Năng Nguyên Tố và +12% ST Tinh-Siêu Dẫn, cộng dồn 3 lần." },
+        { tier: "4★", name: "Mảnh Chương Tế Lễ",
+          icon: IMG + "6/6c/Weapon_Sacrificial_Fragments.png/revision/latest",
+          note: "Dòng phụ Tinh Thông rất cao. E có 40% tỷ lệ làm mới hồi chiêu (R1)." },
+        { tier: "4★", name: "Quả Mọng",
+          icon: IMG + "9/98/Weapon_Fruit_of_Fulfillment.png/revision/latest",
+          note: "Vũ khí rèn. Dòng phụ Hiệu quả nạp, kích hoạt phản ứng thì tăng dần Tinh Thông (đổi lại giảm một ít Tấn Công)." },
+      ],
+    },
+
+    notes: [],
+  },
+
   // ---- Nhân vật phụ: điền thêm build / rotation sau ----
+  { id: "odette",  name: "Odette",  rarity: 5, element: "cryo",  weapon: "sword",    role: "Sub-DPS / Support", region: "Snezhnaya",
+    icon: IMG + "8/87/Odette_Icon.png/revision/latest" },
   { id: "xilonen", name: "Xilonen", rarity: 5, element: "geo",  weapon: "sword",    role: "Support", region: "Natlan",
     icon: IMG + "a/ab/Xilonen_Icon.png/revision/latest" },
   { id: "bennett", name: "Bennett", rarity: 4, element: "pyro", weapon: "sword",    role: "Support", region: "Mondstadt",
