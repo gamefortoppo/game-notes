@@ -70,6 +70,10 @@
         (b.stats || []).forEach((s, i) => { if (!s.label || !s.target) err(`${at} › build.stats[${i + 1}]`, "cần cả label và target"); });
         if (b.mainStats && !Array.isArray(b.mainStats)) err(`${at} › build.mainStats`, "phải là mảng [{ slot, stat, note }]");
         else (b.mainStats || []).forEach((m, i) => { if (!m.slot || !m.stat) err(`${at} › build.mainStats[${i + 1}]`, "cần cả slot và stat"); });
+        (b.artifacts || []).forEach((a, i) => {
+          if (!a.set) err(`${at} › build.artifacts[${i + 1}]`, "thiếu set");
+          if (a.icon && !isUrl(a.icon)) err(`${at} › build.artifacts[${i + 1}]`, "icon không phải URL https");
+        });
         (b.weapons || []).forEach((w, i) => {
           if (!w.name) err(`${at} › build.weapons[${i + 1}]`, "thiếu name");
           if (w.icon && !isUrl(w.icon)) err(`${at} › build.weapons[${i + 1}]`, "icon không phải URL https");

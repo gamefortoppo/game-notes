@@ -28,7 +28,7 @@ Dung thường gửi ảnh chụp câu trả lời AI / bài hướng dẫn. Tá
   }],
   build: {
     stats: [{ label: "Tỷ lệ bạo kích", target: "~60%", note: "...", bad: false }],
-    artifacts: [{ set: "Bí Điển Obsidian", pieces: 4, note: "..." }],
+    artifacts: [{ set: "Bí Điển Obsidian", pieces: 4, icon: IMG + "...", note: "2 món: ...\n4 món: ..." }], // icon = món Hoa (Flower of Life)
     mainStats: [{ slot: "Đồng hồ", stat: "% Tấn Công", note: "..." }],   // Đồng hồ, Ly, Nón
     weapons: [{ tier: "Trấn", name: "Thiên Dương Rực Lửa", icon: IMG + "...", note: "..." }], // thứ tự ưu tiên
   },

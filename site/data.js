@@ -43,6 +43,8 @@ const WEAPONS = {
 
 // Thuật ngữ: chữ nào trùng key sẽ được gạch chân chấm, rê chuột / chạm vào để xem giải thích.
 const GLOSSARY = {
+  "Tinh-Siêu Dẫn": "Phản ứng Băng + Lôi đặc biệt, thay cho Siêu Dẫn khi trong đội có nhân vật như Sandrone. Mỗi lần kích hoạt sẽ tạo Pha Lê Tinh Huy và một Vùng Trục Sao quanh đó trong 7s.",
+  "Vùng Trục Sao": "Vùng tạo ra từ Tinh-Siêu Dẫn. Nhân vật đứng trong vùng được tăng ST Băng và ST Lôi, quái trong vùng bị giảm 40% Kháng Vật Lý. Đánh Băng/Lôi trúng quái trong vùng càng nhiều thì buff mỗi 4s càng mạnh.",
   "2U": "U (Unit) là độ dày của ấn nguyên tố gắn trên quái. 1U là ấn mỏng, 2U là ấn dày: trụ lâu hơn và chịu được nhiều lần phản ứng hơn. Nhờ vậy ấn 2U vừa đủ xóa ấn nguyên tố cũ, vừa còn dư để phủ ấn mới lên quái.",
 };
 
@@ -116,6 +118,7 @@ const CHARACTERS = [
       ],
       artifacts: [
         { set: "Bí Điển Obsidian", pieces: 4,
+          icon: IMG + "8/86/Item_Reckoning_of_the_Xenogenic.png/revision/latest",
           note: "2 món: +15% sát thương khi ở Dạ Hồn Chúc Phúc.\n4 món: tiêu hao 1 điểm Dạ Hồn → +40% tỷ lệ bạo kích trong 6s." },
       ],
       mainStats: [
@@ -144,6 +147,103 @@ const CHARACTERS = [
     notes: [],
   },
 
+  {
+    id: "sandrone",
+    name: "Sandrone",
+    title: "Quan Chấp Hành Fatui",
+    rarity: 5,
+    element: "cryo",
+    weapon: "claymore",
+    role: "Main DPS",
+    region: "Snezhnaya",
+    icon: IMG + "c/c8/Sandrone_Icon.png/revision/latest",
+
+    summary:
+      "Main DPS Băng. Khi có Sandrone trong đội, Siêu Dẫn chuyển thành Tinh-Siêu Dẫn và tạo ra Vùng Trục Sao: cả đội được tăng ST Băng, ST Lôi, còn quái bị giảm Kháng Vật Lý. Đứng trong vùng này, Sandrone vào trạng thái Tỏa Sáng: Tinh-Siêu Dẫn và đòn đánh mạnh hơn hẳn.",
+
+    // Tên + icon kỹ năng: genshin-impact.fandom.com/vi/wiki/Sandrone
+    skills: [
+      {
+        key: "BA",
+        name: "Công Thức Hiện Tượng - Mệnh Đề Hiển Nhiên",
+        icon: IMG + "9/99/Claymore_Cryo.png/revision/latest",
+        desc: "Tấn Công Thường tối đa 3 đòn bằng sợi chỉ điều khiển vũ khí. Trọng Kích gọi cỗ máy Fagio vào chế độ Giải Mã, bắn phá phía trước và phóng Tia Ngưng Tụ theo chu kỳ, gây ST Băng (tính là ST Tinh-Siêu Dẫn khi đang Tỏa Sáng).\nCông Suất Giải Mã của Fagio tăng dần, chạm 100 thì Fagio Quá Tải: bắn chậm hơn và không vào lại Giải Mã được cho tới khi công suất tụt dưới 50.",
+      },
+      {
+        key: "E",
+        name: "Công Thức Hiện Tượng - Phân Tích Vi Sai",
+        icon: IMG + "e/e0/Talent_Formule_Phenomenale_Differential_Analysis.png/revision/latest",
+        desc: "Ngồi lên Thiết Bị Đột Kích Chiến Thuật Tiệc Trà, lướt về phía trước trong 6s. Nếu có quái gần đó, bắn 2 viên Đạn Lăng Kính gây ST Băng (viên thứ hai tính là ST Tinh-Siêu Dẫn khi đang Tỏa Sáng). Trong lúc lướt, Sandrone sửa Fagio nên Công Suất Giải Mã giảm rất nhanh.",
+      },
+      {
+        key: "Q",
+        name: "Công Thức Hiện Tượng - Chứng Minh Mọi Nguyên Lý",
+        icon: IMG + "0/06/Talent_Formule_Phenomenale_Q.E.D..png/revision/latest",
+        desc: "Gọi hàng loạt Pháo Cộng Hưởng Lăng Kính oanh tạc một vùng rộng, rồi phóng Chùm Tia Tụ Năng Nhiệt Độ Âm gây ST Băng diện rộng (tính là ST Tinh-Siêu Dẫn khi đang Tỏa Sáng).",
+      },
+    ],
+
+    teams: [
+      {
+        name: "Tinh-Siêu Dẫn",
+        members: ["sandrone", "alyosha", "diona", "sucrose"],
+        rotation: [
+          { char: "diona", actions: ["E giữ", "Q"],
+            why: "Giữ E để tạo khiên chắc, rồi bật Q để có vùng hồi máu và gắn ấn Băng lên quái." },
+          { char: "sucrose", actions: ["E", "Q"],
+            why: "Khuếch tán Băng để gom quái lại gần. Nếu Sucrose mang 4 món Bóng Hình Màu Xanh, quái còn bị giảm Kháng Băng." },
+          { char: "alyosha", actions: ["E", "Q"],
+            why: "Alyosha gắn Lôi từ ngoài sân. Lôi gặp ấn Băng có sẵn trên quái sẽ kích hoạt Tinh-Siêu Dẫn và mở ra Vùng Trục Sao." },
+          { char: "sandrone", actions: ["CA giữ"],
+            why: "Giữ trọng kích để Fagio vào chế độ Giải Mã, liên tục phóng Tia Ngưng Tụ và ăn trọn buff của Vùng Trục Sao." },
+          { char: "sandrone", actions: ["E"],
+            why: "Khi Công Suất Giải Mã đã lên cao (trên 50, tốt nhất là gần mốc 100), bấm E để hạ công suất xuống. Nhờ nội tại, viên Đạn Lăng Kính thứ hai sẽ gây 400% sát thương, và cứ mỗi 10 điểm công suất giảm, Sandrone nhận 1 tầng Chiến Thuật Cải Tiến.",
+            warn: "Đừng để Fagio chạm 100 rồi mới xử lý. Lúc đó Fagio Quá Tải, bắn chậm hẳn và không vào lại Giải Mã được cho tới khi công suất tụt dưới 50." },
+          { char: "sandrone", actions: ["CA giữ", "Q"],
+            why: "Giữ trọng kích thêm một vòng nữa, rồi kết thúc bằng Q khi vẫn còn đứng trong Vùng Trục Sao. Q lúc này dùng hết số tầng Chiến Thuật Cải Tiến, mỗi tầng cộng thêm 10% sát thương cho chùm tia cuối." },
+        ],
+      },
+    ],
+
+    build: {
+      stats: [
+        { label: "Bạo kích", target: "70% / 140%+",
+          note: "Tỷ lệ bạo kích / ST bạo kích. Sandrone cần bạo kích đều cho cả chuỗi tia của Fagio lẫn chiêu Q." },
+        { label: "Hiệu quả nạp", target: "~120–130%",
+          note: "Q chiếm phần lớn sát thương. Diona và Alyosha sẽ sạc năng lượng hộ." },
+      ],
+      artifacts: [
+        { set: "Ảo Tưởng Vụn Vỡ Trong Bóng Tối", pieces: 4,
+          icon: IMG + "5/5c/Item_Iridescence_That_Ceased_Amidst_Glory.png/revision/latest",
+          note: "2 món: +18% Tấn Công.\n4 món: ST Siêu Dẫn +80%, ST Tinh-Siêu Dẫn +40%. Đánh quái đang dính Siêu Dẫn hoặc Tinh-Siêu Dẫn thì đòn đó được +16% tỷ lệ bạo kích." },
+      ],
+      mainStats: [
+        { slot: "Đồng hồ", stat: "% Tấn Công", note: "Nội tại của Sandrone đều tính theo Tấn Công của bản thân." },
+        { slot: "Ly",      stat: "Tăng ST Băng" },
+        { slot: "Nón",     stat: "Tỷ Lệ / ST Bạo Kích", note: "Chọn theo chỉ số vũ khí đang có cho cân." },
+      ],
+      weapons: [
+        { tier: "Trấn", name: "Muỗng Trà Siêu Việt",
+          icon: IMG + "c/c4/Weapon_A_Teaspoon_of_Transcendence.png/revision/latest",
+          note: "Vũ khí riêng của Sandrone." },
+        { tier: "5★ thay thế", name: "Hải Đăng Bờ Biển Lau",
+          icon: IMG + "6/6c/Weapon_Beacon_of_the_Reed_Sea.png/revision/latest",
+          note: "Có tỷ lệ bạo kích và % Tấn Công, dùng ổn." },
+        { tier: "5★ thay thế", name: "Đường Cùng Của Sói",
+          icon: IMG + "4/4f/Weapon_Wolf%27s_Gravestone.png/revision/latest",
+          note: "Thuần tăng Tấn Công." },
+        { tier: "4★", name: "Kiếm Li Cốt",
+          icon: IMG + "8/88/Weapon_Serpent_Spine.png/revision/latest",
+          note: "Vũ khí Battle Pass, tăng sát thương ổn định." },
+        { tier: "4★", name: "Nhát Chém Cứu Rỗi",
+          icon: IMG + "2/27/Weapon_Blade_of_Atonement.png/revision/latest",
+          note: "Vũ khí rèn Snezhnaya. Kích hoạt phản ứng thì +64 Tinh Thông, kích hoạt phản ứng Tinh Tú thì +16% Tấn Công." },
+      ],
+    },
+
+    notes: [],
+  },
+
   // ---- Nhân vật phụ: điền thêm build / rotation sau ----
   { id: "xilonen", name: "Xilonen", rarity: 5, element: "geo",  weapon: "sword",    role: "Support", region: "Natlan",
     icon: IMG + "a/ab/Xilonen_Icon.png/revision/latest" },
@@ -151,4 +251,10 @@ const CHARACTERS = [
     icon: IMG + "7/79/Bennett_Icon.png/revision/latest" },
   { id: "citlali", name: "Citlali", rarity: 5, element: "cryo", weapon: "catalyst", role: "Support", region: "Natlan",
     icon: IMG + "d/dd/Citlali_Icon.png/revision/latest" },
+  { id: "alyosha", name: "Alyosha", rarity: 4, element: "electro", weapon: "polearm", role: "Support", region: "Snezhnaya",
+    icon: IMG + "1/1d/Alyosha_Icon.png/revision/latest" },
+  { id: "diona",   name: "Diona",   rarity: 4, element: "cryo",  weapon: "bow",      role: "Support", region: "Mondstadt",
+    icon: IMG + "4/40/Diona_Icon.png/revision/latest" },
+  { id: "sucrose", name: "Sucrose", rarity: 4, element: "anemo", weapon: "catalyst", role: "Support", region: "Mondstadt",
+    icon: IMG + "0/0e/Sucrose_Icon.png/revision/latest" },
 ];

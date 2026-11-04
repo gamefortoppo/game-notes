@@ -101,8 +101,10 @@
           ${s.note ? `<div class="nt">${txt(s.note)}</div>` : ""}</div>`).join("")}
       </div>` : "",
       b.artifacts?.length ? `<div class="sub">Thánh di vật</div><div class="block">
-        ${b.artifacts.map(a => `<div class="row"><span class="nm">${esc(a.set)}</span>
-          ${a.pieces ? `<span class="pcs">${a.pieces} món</span>` : ""}<span class="nt">${txt(a.note)}</span></div>`).join("")}
+        ${b.artifacts.map(a => `<div class="weapon">
+          <div class="w-ico">${a.icon ? `<img src="${esc(a.icon)}" alt="" loading="lazy">` : ""}</div>
+          <div>${a.pieces ? `<span class="tier">${a.pieces} món</span>` : ""}<div class="nm">${esc(a.set)}</div>
+            ${a.note ? `<div class="nt">${txt(a.note)}</div>` : ""}</div></div>`).join("")}
       </div>` : "",
       ms.length ? `<div class="sub">Dòng chính</div><div class="block">
         ${ms.map(m => `<div class="ms"><span class="slot">${esc(m.slot)}</span>
