@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiểm tra data.js</title>
+<style>
+  body { font: 15px/1.6 system-ui, sans-serif; max-width: 760px; margin: 0 auto; padding: 20px 16px; background: #f5f3ee; color: #24221e; }
+  h1 { font-size: 22px; margin: 0 0 12px; }
+  .sum { padding: 12px 16px; border-radius: 12px; font-weight: 600; margin-bottom: 14px; }
+  .ok { background: #e3f4ea; color: #13724f; } .bad { background: #fde8e6; color: #b3261e; }
+  li { margin: 4px 0; } .e { color: #b3261e; } .w { color: #9a5b00; }
+  code { background: #fff; padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<h1>Kiểm tra <code>site/data.js</code></h1>
+<div id="out">Đang kiểm tra…</div>
+<script>
+  window.__syntaxError = null;
+  window.addEventListener("error", e => { window.__syntaxError = e.message + (e.lineno ? ` (dòng ${e.lineno})` : ""); });
+</script>
+<script src="../site/data.js"></script>
+<script src="validate.js"></script>
+<script>
+  const out = document.getElementById("out");
+  if (window.__syntaxError || typeof CHARACTERS === "undefined") {
+    out.innerHTML = `<div class="sum bad">data.js bị lỗi cú pháp: ${window.__syntaxError || "không đọc được"}</div>`;
+  } else {
+    const { errors, warnings } = validateData({ ACTIONS, ELEMENTS, WEAPONS, CHARACTERS });
+    const esc = s => s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+    out.innerHTML = `
+      <div class="sum ${errors.length ? "bad" : "ok"}">${CHARACTERS.length} nhân vật · ${errors.length} lỗi · ${warnings.length} cảnh báo</div>
+      ${errors.length ? `<b>Lỗi (phải sửa)</b><ul>${errors.map(e => `<li class="e">${esc(e)}</li>`).join("")}</ul>` : ""}
+      ${warnings.length ? `<b>Cảnh báo (nên xem)</b><ul>${warnings.map(w => `<li class="w">${esc(w)}</li>`).join("")}</ul>` : ""}`;
+    document.title = errors.length ? `❌ ${errors.length} lỗi` : "✅ OK";
+  }
+</script>
+</body>
+</html>
