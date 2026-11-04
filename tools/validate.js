@@ -1,6 +1,6 @@
 // Kiểm tra site/data.js. Dùng chung cho tools/check.html (trình duyệt) và tools/validate.mjs (Node / GitHub Actions).
 (function (root) {
-  function validateData({ ACTIONS, ELEMENTS, WEAPONS, CHARACTERS }) {
+  function validateData({ ACTIONS, ELEMENTS, WEAPONS, CHARACTERS, GLOSSARY }) {
     const errors = [], warnings = [];
     const err = (where, msg) => errors.push(`${where}: ${msg}`);
     const warn = (where, msg) => warnings.push(`${where}: ${msg}`);
@@ -9,6 +9,11 @@
       if (!v) err("data.js", `thiếu biến ${name}`);
     if (errors.length) return { errors, warnings };
     if (!Array.isArray(CHARACTERS)) { err("CHARACTERS", "phải là mảng [...]"); return { errors, warnings }; }
+
+    if (GLOSSARY !== undefined) {
+      if (!GLOSSARY || typeof GLOSSARY !== "object" || Array.isArray(GLOSSARY)) err("GLOSSARY", "phải là object { \"thuật ngữ\": \"giải thích\" }");
+      else for (const [k, v] of Object.entries(GLOSSARY)) if (typeof v !== "string" || !v.trim()) err(`GLOSSARY.${k}`, "thiếu nội dung giải thích");
+    }
 
     const baseKey = a => String(a).trim().replace(/\s*[x×]\s*\d+$/i, "").trim();
     const isUrl = u => /^https:\/\/\S+$/.test(u);
@@ -59,8 +64,17 @@
           if (!r.why) warn(rat, "chưa có giải thích (why)");
         });
       });
+      (c.skills || []).forEach((s, i) => { if (s.icon && !isUrl(s.icon)) err(`${at} › skills[${i + 1}]`, "icon không phải URL https"); });
       const b = c.build;
-      if (b) (b.stats || []).forEach((s, i) => { if (!s.label || !s.target) err(`${at} › build.stats[${i + 1}]`, "cần cả label và target"); });
+      if (b) {
+        (b.stats || []).forEach((s, i) => { if (!s.label || !s.target) err(`${at} › build.stats[${i + 1}]`, "cần cả label và target"); });
+        if (b.mainStats && !Array.isArray(b.mainStats)) err(`${at} › build.mainStats`, "phải là mảng [{ slot, stat, note }]");
+        else (b.mainStats || []).forEach((m, i) => { if (!m.slot || !m.stat) err(`${at} › build.mainStats[${i + 1}]`, "cần cả slot và stat"); });
+        (b.weapons || []).forEach((w, i) => {
+          if (!w.name) err(`${at} › build.weapons[${i + 1}]`, "thiếu name");
+          if (w.icon && !isUrl(w.icon)) err(`${at} › build.weapons[${i + 1}]`, "icon không phải URL https");
+        });
+      }
     });
 
     return { errors, warnings };

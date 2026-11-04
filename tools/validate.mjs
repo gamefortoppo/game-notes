@@ -10,7 +10,7 @@ const { validateData } = require("./validate.js");
 const code = readFileSync(new URL("../site/data.js", import.meta.url), "utf8");
 let data;
 try {
-  data = vm.runInNewContext(code + "\n;({ ACTIONS, ELEMENTS, WEAPONS, CHARACTERS })", {}, { filename: "data.js" });
+  data = vm.runInNewContext(code + "\n;({ ACTIONS, ELEMENTS, WEAPONS, CHARACTERS, GLOSSARY: typeof GLOSSARY === 'undefined' ? undefined : GLOSSARY })", {}, { filename: "data.js" });
 } catch (e) {
   console.error("❌ data.js bị lỗi cú pháp:\n  " + e.message);
   process.exit(1);

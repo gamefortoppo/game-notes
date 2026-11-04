@@ -15,7 +15,6 @@
   --radius: 14px;
 }
 * { box-sizing: border-box; }
-html { scroll-padding-top: 110px; }
 body {
   margin: 0;
   background: var(--bg);
@@ -82,16 +81,6 @@ main { max-width: 720px; margin: 0 auto; padding: 18px 16px 40px; }
 .hero-img { width: 96px; height: 96px; }
 .hero-img .ph { font-size: 44px; }
 .summary { font-size: 16px; margin: 16px 2px 0; }
-
-/* Thanh mục */
-.jump {
-  position: sticky; top: 53px; z-index: 5;
-  display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;
-  margin: 16px -16px 0; padding: 8px 16px;
-  background: rgba(245, 243, 238, .92); backdrop-filter: blur(8px);
-}
-.jump::-webkit-scrollbar { display: none; }
-.jump a { flex: none; font-size: 13px; padding: 5px 14px; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); }
 
 section { margin-top: 26px; }
 section > h2 { font-size: 20px; margin: 0 0 12px; letter-spacing: -.2px; }
@@ -166,12 +155,38 @@ section > h2 { font-size: 20px; margin: 0 0 12px; letter-spacing: -.2px; }
 .row .pcs { font-size: 12px; color: var(--muted); }
 .row .nt { flex-basis: 100%; color: #5a564e; font-size: 14px; }
 
-.mainstats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.mainstats div { background: var(--paper); border-radius: var(--radius); padding: 12px; }
-.mainstats small { display: block; font-size: 12px; color: var(--muted); }
-.mainstats b { font-size: 14px; }
+.sub .hint { font-weight: 400; font-size: 12px; }
+
+.ms { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 8px; padding: 12px 0; align-items: baseline; }
+.ms + .ms { border-top: 1px solid var(--line); }
+.ms .slot { font-size: 13px; color: var(--muted); }
+.ms .nm { font-weight: 600; }
+.ms .nt { font-size: 13px; color: #5a564e; }
+
+.skill .sk-ico { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.skill .sk-ico img { width: 100%; height: 100%; object-fit: contain; background: #4a4553; padding: 4px; border-radius: 50%; }
+.skill .nm .key { margin-right: 4px; }
+
+.weapon { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; align-items: center; padding: 12px 0; }
+.weapon + .weapon { border-top: 1px solid var(--line); }
+.weapon .w-ico { width: 52px; height: 52px; border-radius: 10px; background: var(--soft); border: 1px solid var(--line); overflow: hidden; }
+.weapon .w-ico img { width: 100%; height: 100%; object-fit: contain; }
+.weapon .nm { font-weight: 600; line-height: 1.35; }
+.weapon .nt { font-size: 13px; color: #5a564e; }
+.tier { display: block; font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: .3px; }
 
 .notes { margin: 0; padding: 12px 16px 12px 34px; background: var(--paper); border-radius: var(--radius); }
 .notes li + li { margin-top: 6px; }
 
 .empty { color: var(--muted); }
+
+/* Thuật ngữ có giải thích */
+.term { border-bottom: 1.5px dotted currentColor; cursor: help; outline: none; }
+.term:focus-visible { background: rgba(0,0,0,.06); border-radius: 3px; }
+.tip {
+  position: absolute; z-index: 20; max-width: min(300px, calc(100vw - 16px));
+  padding: 10px 12px; border-radius: 10px;
+  background: #2b2925; color: #f3efe7; font-size: 13px; line-height: 1.55;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+}
+.tip b { color: #ffd27a; margin-right: 2px; }

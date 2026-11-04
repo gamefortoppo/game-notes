@@ -27,7 +27,7 @@
   if (window.__syntaxError || typeof CHARACTERS === "undefined") {
     out.innerHTML = `<div class="sum bad">data.js bị lỗi cú pháp: ${window.__syntaxError || "không đọc được"}</div>`;
   } else {
-    const { errors, warnings } = validateData({ ACTIONS, ELEMENTS, WEAPONS, CHARACTERS });
+    const { errors, warnings } = validateData({ ACTIONS, ELEMENTS, WEAPONS, CHARACTERS, GLOSSARY: typeof GLOSSARY === "undefined" ? undefined : GLOSSARY });
     const esc = s => s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
     out.innerHTML = `
       <div class="sum ${errors.length ? "bad" : "ok"}">${CHARACTERS.length} nhân vật · ${errors.length} lỗi · ${warnings.length} cảnh báo</div>
