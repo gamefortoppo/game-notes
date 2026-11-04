@@ -115,6 +115,27 @@ section > h2 { font-size: 20px; margin: 0 0 12px; letter-spacing: -.2px; }
 .members { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 14px; }
 .members a { flex: none; width: 56px; text-align: center; font-size: 12px; }
 .members .ava { width: 52px; height: 52px; margin: 0 auto 3px; border: 2px solid var(--el); }
+/* Nhiều đội: gập / mở, ngăn bằng đường kẻ mảnh */
+.team.fold { margin: 0; border-top: 1px solid var(--line); }
+.team.fold:last-of-type { border-bottom: 1px solid var(--line); }
+.team.fold[open] { padding-bottom: 14px; }
+.fold > summary {
+  list-style: none; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; padding: 14px 0;
+}
+.fold > summary::-webkit-details-marker { display: none; }
+.fold > summary .team-name { flex: 1; margin: 0; }
+.fold:not([open]) > summary .team-name { color: #5c5850; }
+.fold .chev {
+  width: 9px; height: 9px; margin: 0 4px 4px 0;
+  border-right: 2px solid #a29d94; border-bottom: 2px solid #a29d94;
+  transform: rotate(45deg); transition: transform .2s;
+}
+.fold[open] .chev { transform: rotate(-135deg); margin-bottom: -4px; }
+.fold .strip { flex-basis: 100%; display: flex; align-items: center; margin-top: 8px; }
+.fold[open] .strip { display: none; }
+.strip .ava { width: 30px; height: 30px; border: 2px solid var(--el); }
+.strip .ln { width: 14px; height: 2px; background: #d9d3c8; flex: none; }
 .video { display: inline-block; font-size: 14px; margin: -4px 0 14px; color: var(--hydro); }
 
 .ava { border-radius: 50%; overflow: hidden; background: color-mix(in srgb, var(--el, #999) 16%, #fff); flex: none; }

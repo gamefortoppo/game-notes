@@ -627,9 +627,129 @@ const CHARACTERS = [
     notes: [],
   },
 
+  {
+    id: "odette",
+    name: "Odette",
+    title: "Vòng Xoay Tuyết Trắng",
+    rarity: 5,
+    element: "cryo",
+    weapon: "sword",
+    role: "Sub-DPS / Support",
+    region: "Snezhnaya",
+    icon: IMG + "8/87/Odette_Icon.png/revision/latest",
+
+    summary:
+      "Sub-DPS Băng đánh từ ngoài sân bằng Bóng Hình Độc Diễn. Có Odette trong đội thì Siêu Dẫn và Khuếch Tán Băng thành Tinh-Siêu Dẫn và Tinh-Khuếch Tán, sát thương gốc của hai phản ứng này còn tăng theo Tấn Công của Odette. Mỗi lần gọi Bóng Hình, Odette nhận 4 tầng Lộng Lẫy và chia dần cho đồng đội khi đứng ngoài sân.",
+
+    // Tên + icon kỹ năng: genshin-impact.fandom.com/vi/wiki/Odette
+    skills: [
+      {
+        key: "BA",
+        name: "Biến Tấu Thiên Nga Tuyết",
+        icon: IMG + "6/6a/Sword_Cryo.png/revision/latest",
+        desc: "Tấn Công Thường tối đa 5 nhát kiếm. Trọng Kích tiêu hao thể lực, vung một nhát chém rực rỡ về phía trước.",
+      },
+      {
+        key: "E",
+        name: "Nhịp Chậm - Điệu Múa Đêm Huyền Ảo",
+        icon: IMG + "1/15/Talent_Adagio_Phantom_Night_Dancers.png/revision/latest",
+        desc: "Gây ST Băng diện rộng và gọi Bóng Hình Độc Diễn (tồn tại 20s), cứ 2s múa một lần gây ST Băng quanh đó. Hồi chiêu 15s.\nTrong 6s sau khi dùng E hoặc Q, E đổi thành Nhịp Chậm - Đoạn Kết Ánh Bình Minh: múa đôi gây ST Băng liên tục, kết thúc bằng một đòn tính là ST Tinh-Siêu Dẫn (hoặc Tinh-Khuếch Tán). Khi đang Tỏa Sáng, các điệu múa của Bóng Hình về sau cũng gây thêm sát thương Tinh Tú Lấp Lánh.",
+      },
+      {
+        key: "Q",
+        name: "Nhịp Nhanh - Mộng Ước Cánh Chim Xanh",
+        icon: IMG + "5/5a/Talent_Presto_Bluebird_Finale.png/revision/latest",
+        desc: "Nhảy dồn dập, gây nhiều lần ST Băng diện rộng, gọi Bóng Hình Độc Diễn về cạnh mình và làm mới thời gian của nó. Odette nhận Giấc Mơ Thiên Nga Tuyết trong 20s, tăng sát thương Tinh Tú Lấp Lánh do mình gây ra. Tốn 60 năng lượng, hồi chiêu 15s.",
+      },
+    ],
+
+    teams: [
+      {
+        name: "Tinh-Siêu Dẫn",
+        members: ["odette", "sandrone", "alyosha", "sucrose"],
+        rotation: [
+          { char: "odette", actions: ["E"],
+            why: "Gây ST Băng diện rộng và gọi Bóng Hình Độc Diễn ra sân để bắt đầu gắn Băng từ ngoài sân. Mỗi lần gọi Bóng Hình, Odette nhận 4 tầng Lộng Lẫy." },
+          { char: "sucrose", actions: ["E", "Q"],
+            why: "Gom quái lại gần nhau và khuếch tán ấn Băng từ Bóng Hình thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s." },
+          { char: "alyosha", actions: ["E", "Q"],
+            why: "Bấm E gắn Dấu Ấn Săn Bắn rồi bật Q gọi Tugarin, Alyosha đánh Lôi từ ngoài sân. Lôi gặp ấn Băng có sẵn sẽ liên tục kích hoạt Tinh-Siêu Dẫn, còn Tugarin cắn trúng quái có dấu thì tăng Tấn Công cho nhân vật đứng sân." },
+          { char: "odette", actions: ["Q", "E"],
+            why: "Bật Q để gọi lại Bóng Hình (nhận lại 4 tầng Lộng Lẫy) và có Giấc Mơ Thiên Nga Tuyết, rồi bấm E ngay để dùng Đoạn Kết Ánh Bình Minh, múa đôi xả ST Băng liên tục cùng Lôi của Alyosha.",
+            warn: "Đừng chậm quá 6s sau Q, vì hết khoảng đó E quay về bản thường và mất đòn Đoạn Kết Ánh Bình Minh." },
+          { char: "sandrone", actions: ["E", "Q", "CA giữ"],
+            why: "Đổi Sandrone ra sân để nhận dần các tầng Lộng Lẫy từ Odette, rồi xả E, Q và giữ trọng kích. Bóng Hình của Odette và Tugarin của Alyosha vẫn đánh từ ngoài sân, giữ cho Tinh-Siêu Dẫn nổ liên tục." },
+        ],
+      },
+      {
+        name: "Tinh-Khuếch Tán",
+        members: ["mizuki", "odette", "traveler-cryo", "sucrose"],
+        rotation: [
+          { char: "traveler-cryo", actions: ["E", "Q"],
+            why: "E tạo một ngôi sao băng đi theo đội, định kỳ bắn tinh thể băng gây ST Băng từ ngoài sân, nhờ vậy quái luôn có ấn Băng để Phong khuếch tán. Sau đó bật Q." },
+          { char: "sucrose", actions: ["E", "Q"],
+            why: "Gom quái lại một chỗ và khuếch tán Băng thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s." },
+          { char: "odette", actions: ["Q", "E"],
+            why: "Bật Q để gọi Bóng Hình Độc Diễn (nhận 4 tầng Lộng Lẫy) và có Giấc Mơ Thiên Nga Tuyết, rồi bấm E ngay để dùng Đoạn Kết Ánh Bình Minh. Đòn kết thúc của điệu múa đôi tính là sát thương Tinh-Khuếch Tán.",
+            warn: "Đừng chậm quá 6s sau Q, vì hết khoảng đó E quay về bản thường và mất đòn Đoạn Kết Ánh Bình Minh." },
+          { char: "mizuki", actions: ["E"],
+            why: "Đổi Mizuki ra sân, bấm E để vào trạng thái Mộng Trôi: Mizuki lơ lửng trôi về phía trước, liên tục gây ST Phong và khuếch tán Băng thành Tinh-Khuếch Tán. Trong trạng thái này, cả đội được tăng ST Tinh-Khuếch Tán theo Tinh Thông của Mizuki, còn Mizuki nhận dần các tầng Lộng Lẫy từ Odette.",
+            warn: "Trong trạng thái Mộng Trôi, Mizuki không đánh thường hay trọng kích được, chỉ cần điều khiển hướng trôi cho trúng quái." },
+        ],
+      },
+    ],
+
+    build: {
+      stats: [
+        { label: "Tấn Công", target: "2.800–3.000+",
+          note: "Phần Tấn Công vượt quá 1000 tăng sát thương Tinh Tú Lấp Lánh của chính Odette (tối đa +30%). Nội tại Chúc Phúc Tinh Tú cũng tăng sát thương gốc Tinh-Siêu Dẫn và Tinh-Khuếch Tán của cả đội theo Tấn Công của Odette (tối đa +14%)." },
+        { label: "Tỷ lệ bạo kích", target: "~70–85%",
+          note: "Bóng Hình Độc Diễn đánh liên tục từ ngoài sân nên cần bạo kích ổn định. Odette đột phá đã tăng ST Bạo Kích, nên dòng phụ ưu tiên Tỷ Lệ Bạo Kích." },
+        { label: "Hiệu quả nạp", target: "~140–160%",
+          note: "Q tốn 60 năng lượng và nên có mỗi vòng để gọi lại Bóng Hình." },
+        { label: "Tinh Thông Nguyên Tố", target: "~200–300+",
+          note: "Chỉ cần khi chơi đội Tinh-Khuếch Tán. Tinh Thông làm tăng sát thương Tinh Tú Lấp Lánh, nên thêm chút Tinh Thông ở dòng phụ giúp các đòn Tinh-Khuếch Tán của Odette đau hơn." },
+      ],
+      artifacts: [
+        { set: "Trái Tim Lửa Nung", pieces: 4,
+          icon: IMG + "e/ef/Item_Foundryman%27s_Conjecture.png/revision/latest",
+          note: "2 món: +18% Tấn Công.\n4 món: kích hoạt hoặc gây ST Tinh Tú Lấp Lánh thì bản thân +12% Tấn Công trong 12s, cả đội +50% ST Tinh Tú Lấp Lánh. Đứng ngoài sân vẫn kích hoạt được." },
+        { set: "Ảo Tưởng Vụn Vỡ Trong Bóng Tối", pieces: 4,
+          icon: IMG + "5/5c/Item_Iridescence_That_Ceased_Amidst_Glory.png/revision/latest",
+          note: "Lựa chọn thay thế.\n2 món: +18% Tấn Công.\n4 món: ST Siêu Dẫn +80%, ST Tinh-Siêu Dẫn +40%. Đánh quái đang dính Siêu Dẫn hoặc Tinh-Siêu Dẫn thì đòn đó được +16% tỷ lệ bạo kích." },
+      ],
+      mainStats: [
+        { slot: "Đồng hồ", stat: "% Tấn Công", note: "Giúp dễ chạm mốc 2.800–3.000+ Tấn Công." },
+        { slot: "Ly",      stat: "Tăng ST Băng", note: "Hoặc % Tấn Công nếu tổng Tấn Công còn thiếu." },
+        { slot: "Nón",     stat: "Tỷ Lệ / ST Bạo Kích", note: "Chọn theo chỉ số vũ khí đang có cho cân." },
+      ],
+      weapons: [
+        { tier: "Trấn", name: "Bạch Hồ Đông Vũ",
+          icon: IMG + "e/ec/Weapon_Whitelake_Frostfeather.png/revision/latest",
+          note: "Vũ khí riêng của Odette, dòng phụ Tỷ Lệ Bạo Kích. E trúng quái thì +8% Tấn Công, cộng dồn 3 tầng. Đủ 3 tầng thì sát thương Tinh Tú Lấp Lánh của người cầm được +50% ST Bạo Kích, còn hồi thêm năng lượng." },
+        { tier: "5★ thay thế", name: "Lời Thề Tự Do Cổ Xưa",
+          icon: IMG + "3/39/Weapon_Freedom-Sworn.png/revision/latest",
+          note: "Dòng phụ Tinh Thông, +10% sát thương. Kích hoạt phản ứng đủ 2 lần thì cả đội +20% Tấn Công trong 12s." },
+        { tier: "4★", name: "Thiết Phong Kích",
+          icon: IMG + "3/35/Weapon_Iron_Sting.png/revision/latest",
+          note: "Dòng phụ Tinh Thông, hợp với đội Tinh-Khuếch Tán. Gây sát thương nguyên tố thì +6% sát thương, cộng dồn 2 lần." },
+        { tier: "4★", name: "Tây Phong Kiếm",
+          icon: IMG + "9/90/Weapon_Favonius_Sword.png/revision/latest",
+          note: "Dòng phụ Hiệu quả nạp, bạo kích tạo thêm hạt năng lượng. Hợp khi đội đang thiếu năng lượng." },
+        { tier: "3★", name: "Thần Kiếm Lê Minh",
+          icon: IMG + "2/23/Weapon_Harbinger_of_Dawn.png/revision/latest",
+          note: "Vũ khí 3★ dễ kiếm, dòng phụ ST Bạo Kích cao. Nội tại chỉ có tác dụng khi HP trên 90%." },
+      ],
+    },
+
+    notes: [],
+  },
+
   // ---- Nhân vật phụ: điền thêm build / rotation sau ----
-  { id: "odette",  name: "Odette",  rarity: 5, element: "cryo",  weapon: "sword",    role: "Sub-DPS / Support", region: "Snezhnaya",
-    icon: IMG + "8/87/Odette_Icon.png/revision/latest" },
+  { id: "mizuki",  name: "Mizuki", rarity: 5, element: "anemo", weapon: "catalyst", role: "Main DPS", region: "Inazuma",
+    icon: IMG + "f/f6/Yumemizuki_Mizuki_Icon.png/revision/latest" },
+  { id: "traveler-cryo", name: "Nhà Lữ Hành (Băng)", rarity: 5, element: "cryo", weapon: "sword", role: "Sub-DPS", region: "Snezhnaya",
+    icon: IMG + "5/59/Traveler_Icon.png/revision/latest" },
   { id: "xilonen", name: "Xilonen", rarity: 5, element: "geo",  weapon: "sword",    role: "Support", region: "Natlan",
     icon: IMG + "a/ab/Xilonen_Icon.png/revision/latest" },
   { id: "bennett", name: "Bennett", rarity: 4, element: "pyro", weapon: "sword",    role: "Support", region: "Mondstadt",

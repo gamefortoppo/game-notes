@@ -73,9 +73,20 @@
             <div><div class="nm">${s.icon ? key(s.key) : ""} ${esc(s.name)}</div><p>${txt(s.desc)}</p></div></div>`).join("")}
       </div>`);
 
-    if (c.teams?.length) add("rotation", "Rotation", c.teams.map(t => `
-      <div class="team">
-        <div class="team-name">${esc(t.name)}</div>
+    // Nhiều đội → mỗi đội gập / mở được (đội đầu mở sẵn).
+    // Lúc gập, dưới tên đội hiện dải avatar theo thứ tự ra sân.
+    const multi = (c.teams?.length || 0) > 1;
+    const strip = t => [...new Set(t.rotation.map(r => r.char))].map(id => {
+      const m = byId[id] || { id, name: id };
+      return `<span class="ava" style="${el(m)}" title="${esc(m.name)}">${pic(m)}</span>`;
+    }).join(`<i class="ln"></i>`);
+
+    if (c.teams?.length) add("rotation", "Rotation", c.teams.map((t, ti) => `
+      <${multi ? `details class="team fold"${ti === 0 ? " open" : ""}` : `div class="team"`}>
+        ${multi
+          ? `<summary><span class="team-name">${esc(t.name)}</span><span class="chev" aria-hidden="true"></span>
+               <span class="strip">${strip(t)}</span></summary>`
+          : `<div class="team-name">${esc(t.name)}</div>`}
         <div class="members">
           ${t.members.map(id => { const m = byId[id] || { id, name: id };
             return `<a href="#/${esc(id)}" style="${el(m)}"><div class="ava">${pic(m)}</div>${esc(m.name)}</a>`; }).join("")}
@@ -91,7 +102,7 @@
             </li>`; }).join("")}
         </ol>
         <div class="legend">${legendFor(t.rotation)}</div>
-      </div>`).join(""));
+      </${multi ? "details" : "div"}>`).join(""));
 
     const ms = Array.isArray(b.mainStats) ? b.mainStats.filter(m => m.stat) : [];
     const buildHtml = [
