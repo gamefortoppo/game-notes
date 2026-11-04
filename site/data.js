@@ -45,7 +45,8 @@ const WEAPONS = {
 const GLOSSARY = {
   "Tinh-Siêu Dẫn": "Phản ứng Băng + Lôi đặc biệt, thay cho Siêu Dẫn khi trong đội có nhân vật như Sandrone. Mỗi lần kích hoạt sẽ tạo Pha Lê Tinh Huy và một Vùng Trục Sao quanh đó trong 7s.",
   "Vùng Trục Sao": "Vùng tạo ra từ Tinh-Siêu Dẫn. Nhân vật đứng trong vùng được tăng ST Băng và ST Lôi, quái trong vùng bị giảm 40% Kháng Vật Lý. Đánh Băng/Lôi trúng quái trong vùng càng nhiều thì buff mỗi 4s càng mạnh.",
-  "2U": "U (Unit) là độ dày của ấn nguyên tố gắn trên quái. 1U là ấn mỏng, 2U là ấn dày: trụ lâu hơn và chịu được nhiều lần phản ứng hơn. Nhờ vậy ấn 2U vừa đủ xóa ấn nguyên tố cũ, vừa còn dư để phủ ấn mới lên quái.",
+  "Tinh Tú Lấp Lánh": "Tên gọi chung cho nhóm phản ứng Băng đặc biệt chỉ xuất hiện khi trong đội có nhân vật như Sandrone, gồm Tinh-Siêu Dẫn (Băng + Lôi) và Khuếch Tán Băng phiên bản Tinh Tú (Băng + Phong). Món nào tăng ST Tinh Tú Lấp Lánh thì tăng luôn cả Tinh-Siêu Dẫn.",
+  "2U":"U (Unit) là độ dày của ấn nguyên tố gắn trên quái. 1U là ấn mỏng, 2U là ấn dày: trụ lâu hơn và chịu được nhiều lần phản ứng hơn. Nhờ vậy ấn 2U vừa đủ xóa ấn nguyên tố cũ, vừa còn dư để phủ ấn mới lên quái.",
 };
 
 const CHARACTERS = [
@@ -244,6 +245,104 @@ const CHARACTERS = [
     notes: [],
   },
 
+  {
+    id: "alyosha",
+    name: "Alyosha",
+    title: "Chiến Khuyển Thần Tốc",
+    rarity: 4,
+    element: "electro",
+    weapon: "polearm",
+    role: "Sub-DPS / Support",
+    region: "Snezhnaya",
+    icon: IMG + "1/1d/Alyosha_Icon.png/revision/latest",
+
+    summary:
+      "Sub-DPS Lôi đánh từ ngoài sân, kiêm hồi máu. E gắn Dấu Ấn Săn Bắn lên quái, sau đó chó săn Tugarin từ Q cắn trúng quái có dấu sẽ kích hoạt dấu, tăng Tấn Công cho nhân vật đang đứng sân. Khi đứng trong Vùng Trục Sao, buff này còn tăng thêm 20% ST Tinh-Siêu Dẫn cho cả đội, nên Alyosha rất hợp đi cùng Sandrone.",
+
+    // Tên + icon kỹ năng: genshin-impact.fandom.com/vi/wiki/Alyosha
+    skills: [
+      {
+        key: "BA",
+        name: "Ngọn Thương Chớp Nhoáng",
+        icon: IMG + "0/06/Polearm_Electro.png/revision/latest",
+        desc: "Tấn Công Thường tối đa 4 lần đâm, đòn cuối gắn Dấu Ấn Săn Bắn lên quái trúng đòn. Trọng Kích tiêu hao thể lực, xông về phía trước gây sát thương cho quái trên đường đi.",
+      },
+      {
+        key: "E",
+        name: "Phục Kích Sấm Sét",
+        icon: IMG + "c/c0/Talent_Thunderbolt_Strike.png/revision/latest",
+        desc: "Nhấn: bắn về phía trước, gây ST Lôi diện rộng. Nhấn giữ: vào trạng thái ngắm, khóa quái trong vùng phía trước rồi bắn khi thả nút. Cả hai cách đều gắn Dấu Ấn Săn Bắn và tạo 5 hạt nguyên tố.\nNếu quái đã có dấu mà bị trúng thêm đòn gắn dấu, dấu sẽ được kích hoạt: xóa dấu và cho nhân vật đứng sân hiệu quả Mệnh Lệnh Thợ Săn, tăng Tấn Công trong 15s.",
+      },
+      {
+        key: "Q",
+        name: "Thợ Săn Tiến Bước",
+        icon: IMG + "4/46/Talent_Hunter%27s_Advance.png/revision/latest",
+        desc: "Gọi chó săn Tugarin ra trận và biến vùng phía trước thành Bãi Săn Sấm Rền trong 14s. Bãi Săn khiêu khích quái và mỗi 2s gây ST Lôi lên quái bước vào. Tugarin cứ 2s lao tới cắn một con quái gần đó gây ST Lôi, ưu tiên con có Dấu Ấn Săn Bắn và kích hoạt luôn dấu đó. Mỗi lần Tugarin cắn còn hồi máu cho nhân vật đứng sân (nội tại bậc 1).",
+      },
+    ],
+
+    teams: [
+      {
+        name: "Tinh-Siêu Dẫn",
+        members: ["sandrone", "alyosha", "diona", "sucrose"],
+        rotation: [
+          { char: "diona", actions: ["E giữ", "Q"],
+            why: "Giữ E để tạo khiên chắc, rồi bật Q để có vùng hồi máu và gắn ấn Băng lên quái." },
+          { char: "sucrose", actions: ["E", "Q"],
+            why: "Khuếch tán Băng để gom quái lại gần. Nếu Sucrose mang 4 món Bóng Hình Màu Xanh, quái còn bị giảm Kháng Băng." },
+          { char: "alyosha", actions: ["E", "Q"],
+            why: "Bấm E trước để gắn Dấu Ấn Săn Bắn lên quái, rồi bật Q gọi Tugarin. Từ đây Tugarin cắn trúng quái có dấu sẽ kích hoạt dấu, tăng Tấn Công cho Sandrone, và Lôi của Alyosha gặp ấn Băng có sẵn sẽ mở ra Vùng Trục Sao.",
+            warn: "Đừng bật Q trước E. Lúc đó quái chưa có dấu nên mấy phát cắn đầu của Tugarin không kích hoạt được gì, phí mất một đoạn buff." },
+          { char: "sandrone", actions: ["CA giữ"],
+            why: "Giữ trọng kích để Fagio vào chế độ Giải Mã, liên tục phóng Tia Ngưng Tụ. Đứng trong Vùng Trục Sao, Sandrone vừa được tăng Tấn Công từ Mệnh Lệnh Thợ Săn, vừa được cả đội cộng thêm 20% ST Tinh-Siêu Dẫn nhờ Alyosha." },
+          { char: "sandrone", actions: ["E"],
+            why: "Khi Công Suất Giải Mã đã lên cao (trên 50, tốt nhất là gần mốc 100), bấm E để hạ công suất xuống và nhận tầng Chiến Thuật Cải Tiến.",
+            warn: "Đừng để Fagio chạm 100 rồi mới xử lý, vì lúc đó Fagio Quá Tải, bắn chậm hẳn." },
+          { char: "sandrone", actions: ["CA giữ", "Q"],
+            why: "Giữ trọng kích thêm một vòng rồi kết thúc bằng Q khi vẫn còn đứng trong Vùng Trục Sao." },
+        ],
+      },
+    ],
+
+    build: {
+      stats: [
+        { label: "Hiệu quả nạp", target: "160–200%",
+          note: "Q tốn 70 năng lượng và nên có mỗi vòng. Nội tại bậc 4 còn đổi Hiệu quả nạp thành sát thương cho E và Q: mỗi 1% nạp thêm 0.35%, tối đa 70% khi nạp đạt 200%." },
+        { label: "Bạo kích", target: "~50% / 120%+",
+          note: "Tỷ lệ bạo kích / ST bạo kích. Bãi Săn và Tugarin đánh liên tục từ ngoài sân nên có bạo kích ổn thì Alyosha góp thêm khá nhiều sát thương." },
+      ],
+      artifacts: [
+        { set: "Nghi Thức Tông Thất Cổ", pieces: 4,
+          icon: IMG + "7/71/Item_Royal_Flora.png/revision/latest",
+          note: "2 món: +20% ST Kỹ Năng Nộ.\n4 món: sau khi dùng Q, cả đội +20% Tấn Công trong 12s (không cộng dồn)." },
+        { set: "Trái Tim Lửa Nung", pieces: 4,
+          icon: IMG + "e/ef/Item_Foundryman%27s_Conjecture.png/revision/latest",
+          note: "2 món: +18% Tấn Công.\n4 món: kích hoạt hoặc gây ST Tinh Tú Lấp Lánh thì bản thân +12% Tấn Công trong 12s, cả đội +50% ST Tinh Tú Lấp Lánh. Đứng ngoài sân vẫn kích hoạt được, nên rất hợp với đội Tinh-Siêu Dẫn." },
+      ],
+      mainStats: [
+        { slot: "Đồng hồ", stat: "% Hiệu Quả Nạp", note: "Hoặc % Tấn Công nếu dòng phụ đã đủ nạp." },
+        { slot: "Ly",      stat: "Tăng ST Lôi" },
+        { slot: "Nón",     stat: "Tỷ Lệ / ST Bạo Kích", note: "Nếu dùng Thương Tây Phong thì ưu tiên Tỷ Lệ Bạo Kích, vì phải bạo kích mới tạo thêm hạt năng lượng." },
+      ],
+      weapons: [
+        { tier: "5★ thay thế", name: "Đoạn Thảo Trường Đao",
+          icon: IMG + "2/21/Weapon_Engulfing_Lightning.png/revision/latest",
+          note: "Đổi Hiệu quả nạp thành Tấn Công, còn hồi nạp sau khi dùng Q." },
+        { tier: "5★ thay thế", name: "Xương Sống Thiên Không",
+          icon: IMG + "6/69/Weapon_Skyward_Spine.png/revision/latest",
+          note: "Dòng phụ Hiệu quả nạp, nội tại tăng Tỷ Lệ Bạo Kích." },
+        { tier: "4★", name: "Thương Tây Phong",
+          icon: IMG + "5/57/Weapon_Favonius_Lance.png/revision/latest",
+          note: "Đòn bạo kích tạo hạt năng lượng, vừa đủ cho Alyosha tự sạc vừa sạc thêm cho đồng đội." },
+        { tier: "4★", name: "Lao Xiên Cá",
+          icon: IMG + "f/f5/Weapon_The_Catch.png/revision/latest",
+          note: "Vũ khí câu cá miễn phí, tăng ST và Tỷ Lệ Bạo Kích cho Q." },
+      ],
+    },
+
+    notes: [],
+  },
+
   // ---- Nhân vật phụ: điền thêm build / rotation sau ----
   { id: "xilonen", name: "Xilonen", rarity: 5, element: "geo",  weapon: "sword",    role: "Support", region: "Natlan",
     icon: IMG + "a/ab/Xilonen_Icon.png/revision/latest" },
@@ -251,8 +350,6 @@ const CHARACTERS = [
     icon: IMG + "7/79/Bennett_Icon.png/revision/latest" },
   { id: "citlali", name: "Citlali", rarity: 5, element: "cryo", weapon: "catalyst", role: "Support", region: "Natlan",
     icon: IMG + "d/dd/Citlali_Icon.png/revision/latest" },
-  { id: "alyosha", name: "Alyosha", rarity: 4, element: "electro", weapon: "polearm", role: "Support", region: "Snezhnaya",
-    icon: IMG + "1/1d/Alyosha_Icon.png/revision/latest" },
   { id: "diona",   name: "Diona",   rarity: 4, element: "cryo",  weapon: "bow",      role: "Support", region: "Mondstadt",
     icon: IMG + "4/40/Diona_Icon.png/revision/latest" },
   { id: "sucrose", name: "Sucrose", rarity: 4, element: "anemo", weapon: "catalyst", role: "Support", region: "Mondstadt",

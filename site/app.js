@@ -85,7 +85,7 @@
           ${t.rotation.map((r, i) => { const rc = byId[r.char] || { name: r.char };
             return `<li class="step" style="${el(rc)}">
               <span class="n">${i + 1}</span>
-              <div class="head"><span class="who">${esc(rc.name)}</span>${keys(r.actions)}</div>
+              <div class="head"><span class="who${r.char === c.id ? " me" : ""}">${esc(rc.name)}</span>${keys(r.actions)}</div>
               ${r.why ? `<p class="why">${txt(r.why)}</p>` : ""}
               ${r.warn ? `<div class="warn"><b>Chú ý:</b> ${txt(r.warn)}</div>` : ""}
             </li>`; }).join("")}
