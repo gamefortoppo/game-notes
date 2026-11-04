@@ -45,7 +45,8 @@ const WEAPONS = {
 const GLOSSARY = {
   "Tinh-Siêu Dẫn": "Phản ứng Băng + Lôi đặc biệt, thay cho Siêu Dẫn khi trong đội có nhân vật như Sandrone. Mỗi lần kích hoạt sẽ tạo Pha Lê Tinh Huy và một Vùng Trục Sao quanh đó trong 7s.",
   "Vùng Trục Sao": "Vùng tạo ra từ Tinh-Siêu Dẫn. Nhân vật đứng trong vùng được tăng ST Băng và ST Lôi, quái trong vùng bị giảm 40% Kháng Vật Lý. Đánh Băng/Lôi trúng quái trong vùng càng nhiều thì buff mỗi 4s càng mạnh.",
-  "Tinh Tú Lấp Lánh": "Tên gọi chung cho nhóm phản ứng Băng đặc biệt chỉ xuất hiện khi trong đội có nhân vật như Sandrone, gồm Tinh-Siêu Dẫn (Băng + Lôi) và Khuếch Tán Băng phiên bản Tinh Tú (Băng + Phong). Món nào tăng ST Tinh Tú Lấp Lánh thì tăng luôn cả Tinh-Siêu Dẫn.",
+  "Tinh Tú Lấp Lánh": "Tên gọi chung cho nhóm phản ứng Băng đặc biệt chỉ xuất hiện khi trong đội có nhân vật như Sandrone, gồm Tinh-Siêu Dẫn (Băng + Lôi) và Tinh-Khuếch Tán (Băng + Phong). Món nào tăng ST Tinh Tú Lấp Lánh thì tăng luôn cả hai phản ứng này.",
+  "Tinh-Khuếch Tán": "Phản ứng Phong khuếch tán Băng đặc biệt, thay cho Khuếch Tán Băng khi trong đội có nhân vật như Sandrone. Gây ST Phong rồi để lại một xoáy nổ ra ST Băng sau một lúc; kích hoạt liên tiếp gần xoáy thì xoáy mạnh và rộng hơn.",
   "2U":"U (Unit) là độ dày của ấn nguyên tố gắn trên quái. 1U là ấn mỏng, 2U là ấn dày: trụ lâu hơn và chịu được nhiều lần phản ứng hơn. Nhờ vậy ấn 2U vừa đủ xóa ấn nguyên tố cũ, vừa còn dư để phủ ấn mới lên quái.",
 };
 
@@ -440,6 +441,98 @@ const CHARACTERS = [
     notes: [],
   },
 
+  {
+    id: "sucrose",
+    name: "Sucrose",
+    title: "Độ Ngọt Vô Hại",
+    rarity: 4,
+    element: "anemo",
+    weapon: "catalyst",
+    role: "Support / Gom quái",
+    region: "Mondstadt",
+    icon: IMG + "0/0e/Sucrose_Icon.png/revision/latest",
+
+    summary:
+      "Hỗ trợ Phong gom quái và chia Tinh Thông cho cả đội. E và Q hút quái về một chỗ, trúng quái thì đồng đội được cộng 20% Tinh Thông của Sucrose. Mang 4 món Bóng Hình Màu Xanh, mỗi lần khuếch tán sẽ giảm kháng nguyên tố của quái. Có Sandrone trong đội thì khuếch tán Băng thành Tinh-Khuếch Tán.",
+
+    // Tên + icon kỹ năng: genshin-impact.fandom.com/vi/wiki/Sucrose
+    skills: [
+      {
+        key: "BA",
+        name: "Gió Thần Sáng Tạo",
+        icon: IMG + "d/dd/Catalyst_Anemo.png/revision/latest",
+        desc: "Tấn Công Thường tối đa 4 lần đánh bằng phong linh, gây ST Phong. Trọng Kích tiêu hao thể lực, sau một nhịp niệm thì gây ST Phong diện rộng.",
+      },
+      {
+        key: "E",
+        name: "Gió Thần Sáng Tạo 6308",
+        icon: IMG + "7/76/Talent_Astable_Anemohypostasis_Creation_-_6308.png/revision/latest",
+        desc: "Gọi một phong linh nhỏ hút quái và vật thể về phía nó, rồi hất văng quái xung quanh, gây ST Phong. Trúng quái tạo 4 hạt nguyên tố.\nE hoặc Q trúng quái thì cả đội (trừ Sucrose) được cộng thêm 20% Tinh Thông Nguyên Tố của Sucrose trong 8s (nội tại bậc 4).",
+      },
+      {
+        key: "Q",
+        name: "Cấm-Gió Thần Sáng Tạo-75 Loại 2",
+        icon: IMG + "4/4d/Talent_Forbidden_Creation_-_Isomer_75_Type_II.png/revision/latest",
+        desc: "Ném bình tạo một phong linh lớn trong 6s, liên tục hút và hất văng quái, gây ST Phong. Nếu chạm phải Thủy, Hỏa, Băng hoặc Lôi, phong linh sẽ hấp thụ nguyên tố đó (chỉ một lần) và gây thêm sát thương của nguyên tố ấy. Tốn 80 năng lượng.\nKhi Sucrose khuếch tán một nguyên tố, đồng đội cùng nguyên tố đó được +50 Tinh Thông trong 8s (nội tại bậc 1).",
+      },
+    ],
+
+    teams: [
+      {
+        name: "Tinh-Siêu Dẫn",
+        members: ["sandrone", "alyosha", "diona", "sucrose"],
+        rotation: [
+          { char: "diona", actions: ["E giữ", "Q"],
+            why: "Giữ E để tạo khiên chắc, rồi bật Q để có vùng hồi máu và gắn ấn Băng lên quái." },
+          { char: "sucrose", actions: ["E", "Q"],
+            why: "Bấm E gom quái lại một chỗ, rồi bật Q. Q của Sucrose sẽ hấp thụ Băng từ Diona và khuếch tán ấn Băng trên quái thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s, còn cả đội được cộng Tinh Thông từ Sucrose.",
+            warn: "Nhớ để Diona gắn Băng trước rồi mới ra Sucrose. Nếu Q của Sucrose chạm Lôi trước, phong linh sẽ hấp thụ Lôi và quái chỉ bị giảm Kháng Lôi." },
+          { char: "alyosha", actions: ["E", "Q"],
+            why: "Bấm E gắn Dấu Ấn Săn Bắn rồi bật Q gọi Tugarin. Lôi của Alyosha gặp ấn Băng trên quái sẽ kích hoạt Tinh-Siêu Dẫn và mở ra Vùng Trục Sao." },
+          { char: "sandrone", actions: ["CA giữ"],
+            why: "Giữ trọng kích để Fagio vào chế độ Giải Mã. Lúc này quái vừa bị giảm Kháng Băng, Sandrone lại đang được cộng Tinh Thông từ Sucrose, mà Tinh Thông làm tăng sát thương Tinh-Siêu Dẫn." },
+          { char: "sandrone", actions: ["E"],
+            why: "Khi Công Suất Giải Mã đã lên cao (trên 50, tốt nhất là gần mốc 100), bấm E để hạ công suất xuống và nhận tầng Chiến Thuật Cải Tiến.",
+            warn: "Đừng để Fagio chạm 100 rồi mới xử lý, vì lúc đó Fagio Quá Tải, bắn chậm hẳn." },
+          { char: "sandrone", actions: ["CA giữ", "Q"],
+            why: "Giữ trọng kích thêm một vòng rồi kết thúc bằng Q khi vẫn còn đứng trong Vùng Trục Sao." },
+        ],
+      },
+    ],
+
+    build: {
+      stats: [
+        { label: "Tinh Thông Nguyên Tố", target: "400–600+",
+          note: "Tinh Thông càng cao thì Tinh-Khuếch Tán càng mạnh, và 20% số Tinh Thông đó còn được chia cho cả đội, giúp Sandrone tăng sát thương Tinh-Siêu Dẫn." },
+        { label: "Hiệu quả nạp", target: "160–180%+",
+          note: "Q tốn 80 năng lượng, nên có lại mỗi vòng để gom quái và khuếch tán Băng." },
+      ],
+      artifacts: [
+        { set: "Bóng Hình Màu Xanh", pieces: 4,
+          icon: IMG + "9/90/Item_In_Remembrance_of_Viridescent_Fields.png/revision/latest",
+          note: "2 món: +15% ST Phong.\n4 món: ST Khuếch Tán +60%, ST Tinh-Khuếch Tán +20%. Quái bị khuếch tán nguyên tố nào thì giảm 40% kháng nguyên tố đó trong 10s, Tinh-Khuếch Tán thì giảm 40% Kháng Băng." },
+      ],
+      mainStats: [
+        { slot: "Đồng hồ", stat: "Tinh Thông Nguyên Tố", note: "Hoặc % Hiệu Quả Nạp nếu Q hay bị thiếu năng lượng." },
+        { slot: "Ly",      stat: "Tinh Thông Nguyên Tố" },
+        { slot: "Nón",     stat: "Tinh Thông Nguyên Tố", note: "Hoặc Tỷ Lệ Bạo Kích nếu dùng Tây Phong Mật Điển để sạc năng lượng cho đội." },
+      ],
+      weapons: [
+        { tier: "4★", name: "Mảnh Chương Tế Lễ",
+          icon: IMG + "6/6c/Weapon_Sacrificial_Fragments.png/revision/latest",
+          note: "Dòng phụ Tinh Thông rất cao. E gây sát thương có 40% tỷ lệ làm mới hồi chiêu (R1), được ném E thêm lần nữa để có thêm hạt năng lượng." },
+        { tier: "3★", name: "Câu Chuyện Diệt Rồng",
+          icon: IMG + "1/19/Weapon_Thrilling_Tales_of_Dragon_Slayers.png/revision/latest",
+          note: "Vũ khí 3★ dễ kiếm. Đổi từ Sucrose sang nhân vật khác thì nhân vật đó được +24% Tấn Công trong 10s (R5 là +48%)." },
+        { tier: "4★", name: "Tây Phong Mật Điển",
+          icon: IMG + "3/36/Weapon_Favonius_Codex.png/revision/latest",
+          note: "Dòng phụ Hiệu quả nạp, bạo kích tạo thêm hạt năng lượng. Hợp khi cả đội đang thiếu năng lượng để dùng Q." },
+      ],
+    },
+
+    notes: [],
+  },
+
   // ---- Nhân vật phụ: điền thêm build / rotation sau ----
   { id: "xilonen", name: "Xilonen", rarity: 5, element: "geo",  weapon: "sword",    role: "Support", region: "Natlan",
     icon: IMG + "a/ab/Xilonen_Icon.png/revision/latest" },
@@ -447,6 +540,4 @@ const CHARACTERS = [
     icon: IMG + "7/79/Bennett_Icon.png/revision/latest" },
   { id: "citlali", name: "Citlali", rarity: 5, element: "cryo", weapon: "catalyst", role: "Support", region: "Natlan",
     icon: IMG + "d/dd/Citlali_Icon.png/revision/latest" },
-  { id: "sucrose", name: "Sucrose", rarity: 4, element: "anemo", weapon: "catalyst", role: "Support", region: "Mondstadt",
-    icon: IMG + "0/0e/Sucrose_Icon.png/revision/latest" },
 ];
