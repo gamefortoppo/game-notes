@@ -8,14 +8,17 @@ Trang: https://gamefortoppo.github.io/game-notes/ · Tagline: "Mê nhân vật m
 quy trình đối chiếu wiki, mẫu dữ liệu, lệnh tra fandom, kiểm tra, push.
 
 ## Đã có
-Hướng dẫn đầy đủ: **Mavuika** (Tan Chảy), **Sandrone** (Tinh-Siêu Dẫn).
-Nhân vật phụ (chưa có ghi chú): Xilonen, Bennett, Citlali, Alyosha, Diona, Sucrose.
+Hướng dẫn đầy đủ: Mavuika, Sandrone, Alyosha, Diona, Sucrose, Mitya, Odette, Mizuki.
+Nhân vật phụ (chưa có ghi chú): Xilonen, Bennett, Citlali, Nhà Lữ Hành (Băng).
+Đội (TEAMS): Tan Chảy · Mavuika, Tinh-Siêu Dẫn · Sandrone / Mitya / Odette, Tinh-Khuếch Tán · Mizuki.
+Mitya (ra 04/11/2026): wiki vi chưa có trang kỹ năng; vũ khí Starsealed Edict và các tên "Lõi Dò Tìm",
+"Tín Hiệu Biến Đổi"… là tạm dịch, cập nhật khi wiki vi có.
 
 ## Cấu trúc
 | Đường dẫn | Vai trò |
 |---|---|
 | `site/` | Toàn bộ trang được deploy. Không có bước build. |
-| `site/data.js` | **Nội dung duy nhất cần sửa**: ACTIONS, ELEMENTS, WEAPONS, GLOSSARY, CHARACTERS |
+| `site/data.js` | **Nội dung duy nhất cần sửa**: ACTIONS, ELEMENTS, WEAPONS, GLOSSARY, CHARACTERS, TEAMS (đội hình dùng chung, tự hiện ở trang mọi thành viên) |
 | `site/app.js` | Render trang (hash router `#/<id>`), thuật ngữ + ô giải thích, `\n` → xuống dòng |
 | `site/style.css` | Giao diện |
 | `tools/validate.js` | Luật kiểm tra data.js (dùng chung trình duyệt + Node) |

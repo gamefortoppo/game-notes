@@ -6,7 +6,12 @@
   const esc = s => String(s ?? "").replace(/[&<>"']/g, ch =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
   const el = c => `--el:var(--${(c && c.element) || "geo"})`;
-  const hasGuide = c => !!(c.teams?.length || c.skills?.length || c.build);
+  // Đội hình nằm chung trong TEAMS. Trang của ai thì lấy mọi đội có người đó,
+  // đội mà người đó là chủ lực (members[0]) lên trước.
+  const ALL_TEAMS = typeof TEAMS !== "undefined" && Array.isArray(TEAMS) ? TEAMS : [];
+  const teamsOf = c => ALL_TEAMS.filter(t => t.members?.includes(c.id))
+    .sort((a, b) => (b.members[0] === c.id) - (a.members[0] === c.id));
+  const hasGuide = c => !!(c.skills?.length || c.build);
 
   function pic(c) {
     const url = c.icon;
@@ -75,13 +80,14 @@
 
     // Nhiều đội → mỗi đội gập / mở được (đội đầu mở sẵn).
     // Lúc gập, dưới tên đội hiện dải avatar theo thứ tự ra sân.
-    const multi = (c.teams?.length || 0) > 1;
+    const teams = teamsOf(c);
+    const multi = teams.length > 1;
     const strip = t => [...new Set(t.rotation.map(r => r.char))].map(id => {
       const m = byId[id] || { id, name: id };
       return `<span class="ava" style="${el(m)}" title="${esc(m.name)}">${pic(m)}</span>`;
     }).join(`<i class="ln"></i>`);
 
-    if (c.teams?.length) add("rotation", "Rotation", c.teams.map((t, ti) => `
+    if (teams.length) add("rotation", "Rotation", teams.map((t, ti) => `
       <${multi ? `details class="team fold"${ti === 0 ? " open" : ""}` : `div class="team"`}>
         ${multi
           ? `<summary><span class="team-name">${esc(t.name)}</span><span class="chev" aria-hidden="true"></span>

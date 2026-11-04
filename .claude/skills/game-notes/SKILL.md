@@ -55,14 +55,6 @@ Khi Dung đang chờ deploy mà nhờ làm nhân vật khác → cứ làm song 
     { key: "E",  name: "...", icon: IMG + "...Talent_....png...", desc: "..." },
     { key: "Q",  name: "...", icon: IMG + "...Talent_....png...", desc: "..." },
   ],
-  teams: [{
-    name: "Tinh-Siêu Dẫn",
-    members: ["sandrone", "alyosha", "diona", "sucrose"],
-    video: { title: "...", url: "" },          // tuỳ chọn, url trống thì không hiện
-    rotation: [
-      { char: "diona", actions: ["E giữ", "Q"], why: "...", warn: "(tuỳ chọn)" },
-    ],
-  }],
   build: {
     stats:     [{ label: "Bạo kích", target: "70% / 140%+", note: "...", bad: false }],
     artifacts: [{ set: "Ảo Tưởng Vụn Vỡ Trong Bóng Tối", pieces: 4, icon: IMG + "<món Hoa>", note: "2 món: ...\n4 món: ..." }],
@@ -75,6 +67,23 @@ Khi Dung đang chờ deploy mà nhờ làm nhân vật khác → cứ làm song 
 }
 ```
 Nhân vật có hướng dẫn đặt **trước** dòng `// ---- Nhân vật phụ ...`; nhân vật phụ đặt sau.
+
+**Đội hình KHÔNG ghi trong nhân vật** mà ghi chung trong mảng `TEAMS` ở cuối `data.js`.
+Mỗi đội ghi **một lần**, trang tự hiện đội ở trang của **mọi thành viên** (tô vệt cọ tên người đang xem).
+`members[0]` là chủ lực: ở trang chủ lực đội đó lên đầu và mở sẵn; trang có ≥2 đội thì tự gập / mở.
+
+```js
+{
+  name: "Tinh-Siêu Dẫn · Sandrone",            // "<phản ứng> · <chủ lực>", không trùng tên đội khác
+  members: ["sandrone", "alyosha", "diona", "sucrose"],   // chủ lực đứng đầu
+  video: { title: "...", url: "" },          // tuỳ chọn, url trống thì không hiện
+  rotation: [
+    { char: "diona", actions: ["E giữ", "Q"], why: "...", warn: "(tuỳ chọn)" },
+  ],
+}
+```
+- Dung gửi đội mà đã có đội cùng thành viên + cùng chủ lực → sửa đội đó, đừng thêm bản thứ hai.
+- `why` viết sao cho đọc ở trang của thành viên nào cũng hiểu (nhắc buff của từng người trong bước liên quan).
 
 ## 3. Tra wiki (dùng trình duyệt có sẵn, chạy JS trên một trang genshin-impact.fandom.com)
 Hàm trợ giúp (dán trước các lệnh bên dưới):

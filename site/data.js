@@ -87,30 +87,6 @@ const CHARACTERS = [
       },
     ],
 
-    teams: [
-      {
-        name: "Tan Chảy (Melt)",
-        members: ["mavuika", "xilonen", "bennett", "citlali"],
-        video: { title: "Mavuika combo guide from basic to advanced – NDC Impact", url: "" },
-        rotation: [
-          { char: "mavuika", actions: ["E"],
-            why: "Tiêu hao Dạ Hồn, kích hoạt ấn Hỏa từ off-field." },
-          { char: "xilonen", actions: ["E", "BA x2"],
-            why: "Giảm kháng nguyên tố của quái và kích buff thánh di vật. Có thể dùng Q nếu cần hồi máu." },
-          { char: "bennett", actions: ["Q"],
-            why: "Tạo vùng hồi máu và buff tấn công lớn. Có thể dùng E trước Q." },
-          { char: "citlali", actions: ["E", "Q"],
-            why: "E tạo khiên. Q có ấn Băng mạnh (2U), xóa ấn Hỏa của Bennett và liên tục gắn lại ấn Băng lên quái.",
-            warn: "Nhớ bấm Q ngay sau E, hoặc đảo lại: Q trước rồi mới E. Nếu để Citlali đứng sân lâu quá, Vòng Hào Quang của Mavuika sẽ kịp gắn Hỏa lên quái trước, và Q của Citlali không còn phủ được ấn Băng nữa." },
-          { char: "mavuika", actions: ["Q", "BA"],
-            why: "Vừa đổi ra là bấm Q ngay, sau đó đánh thường 1 cái (hoặc lướt xe) để bộ 4 món Bí Điển Obsidian kích hoạt, cộng thêm 40% tỷ lệ bạo kích.",
-            warn: "Đừng chậm tay ở bước này, vì Vòng Hào Quang từ bước 1 có thể nổ trúng quái và lấy mất ấn Băng. Cũng đừng giữ trọng kích ngay sau Q, vì vài đòn đầu có thể chưa được cộng 40% bạo kích." },
-          { char: "mavuika", actions: ["CA giữ"],
-            why: "Giữ trọng kích xoay cho đến khi hết Lò Lửa Sinh Tử." },
-        ],
-      },
-    ],
-
     build: {
       stats: [
         { label: "Tỷ lệ bạo kích", target: "~60%",
@@ -182,28 +158,6 @@ const CHARACTERS = [
         name: "Công Thức Hiện Tượng - Chứng Minh Mọi Nguyên Lý",
         icon: IMG + "0/06/Talent_Formule_Phenomenale_Q.E.D..png/revision/latest",
         desc: "Gọi hàng loạt Pháo Cộng Hưởng Lăng Kính oanh tạc một vùng rộng, rồi phóng Chùm Tia Tụ Năng Nhiệt Độ Âm gây ST Băng diện rộng (tính là ST Tinh-Siêu Dẫn khi đang Tỏa Sáng).",
-      },
-    ],
-
-    teams: [
-      {
-        name: "Tinh-Siêu Dẫn",
-        members: ["sandrone", "alyosha", "diona", "sucrose"],
-        rotation: [
-          { char: "diona", actions: ["E giữ", "Q"],
-            why: "Giữ E để tạo khiên chắc, rồi bật Q để có vùng hồi máu và gắn ấn Băng lên quái." },
-          { char: "sucrose", actions: ["E", "Q"],
-            why: "Khuếch tán Băng để gom quái lại gần. Nếu Sucrose mang 4 món Bóng Hình Màu Xanh, quái còn bị giảm Kháng Băng." },
-          { char: "alyosha", actions: ["E", "Q"],
-            why: "Alyosha gắn Lôi từ ngoài sân. Lôi gặp ấn Băng có sẵn trên quái sẽ kích hoạt Tinh-Siêu Dẫn và mở ra Vùng Trục Sao." },
-          { char: "sandrone", actions: ["CA giữ"],
-            why: "Giữ trọng kích để Fagio vào chế độ Giải Mã, liên tục phóng Tia Ngưng Tụ và ăn trọn buff của Vùng Trục Sao." },
-          { char: "sandrone", actions: ["E"],
-            why: "Khi Công Suất Giải Mã đã lên cao (trên 50, tốt nhất là gần mốc 100), bấm E để hạ công suất xuống. Nhờ nội tại, viên Đạn Lăng Kính thứ hai sẽ gây 400% sát thương, và cứ mỗi 10 điểm công suất giảm, Sandrone nhận 1 tầng Chiến Thuật Cải Tiến.",
-            warn: "Đừng để Fagio chạm 100 rồi mới xử lý. Lúc đó Fagio Quá Tải, bắn chậm hẳn và không vào lại Giải Mã được cho tới khi công suất tụt dưới 50." },
-          { char: "sandrone", actions: ["CA giữ", "Q"],
-            why: "Giữ trọng kích thêm một vòng nữa, rồi kết thúc bằng Q khi vẫn còn đứng trong Vùng Trục Sao. Q lúc này dùng hết số tầng Chiến Thuật Cải Tiến, mỗi tầng cộng thêm 10% sát thương cho chùm tia cuối." },
-        ],
       },
     ],
 
@@ -282,29 +236,6 @@ const CHARACTERS = [
       },
     ],
 
-    teams: [
-      {
-        name: "Tinh-Siêu Dẫn",
-        members: ["sandrone", "alyosha", "diona", "sucrose"],
-        rotation: [
-          { char: "diona", actions: ["E giữ", "Q"],
-            why: "Giữ E để tạo khiên chắc, rồi bật Q để có vùng hồi máu và gắn ấn Băng lên quái." },
-          { char: "sucrose", actions: ["E", "Q"],
-            why: "Khuếch tán Băng để gom quái lại gần. Nếu Sucrose mang 4 món Bóng Hình Màu Xanh, quái còn bị giảm Kháng Băng." },
-          { char: "alyosha", actions: ["E", "Q"],
-            why: "Bấm E trước để gắn Dấu Ấn Săn Bắn lên quái, rồi bật Q gọi Tugarin. Từ đây Tugarin cắn trúng quái có dấu sẽ kích hoạt dấu, tăng Tấn Công cho Sandrone, và Lôi của Alyosha gặp ấn Băng có sẵn sẽ mở ra Vùng Trục Sao.",
-            warn: "Đừng bật Q trước E. Lúc đó quái chưa có dấu nên mấy phát cắn đầu của Tugarin không kích hoạt được gì, phí mất một đoạn buff." },
-          { char: "sandrone", actions: ["CA giữ"],
-            why: "Giữ trọng kích để Fagio vào chế độ Giải Mã, liên tục phóng Tia Ngưng Tụ. Đứng trong Vùng Trục Sao, Sandrone vừa được tăng Tấn Công từ Mệnh Lệnh Thợ Săn, vừa được cả đội cộng thêm 20% ST Tinh-Siêu Dẫn nhờ Alyosha." },
-          { char: "sandrone", actions: ["E"],
-            why: "Khi Công Suất Giải Mã đã lên cao (trên 50, tốt nhất là gần mốc 100), bấm E để hạ công suất xuống và nhận tầng Chiến Thuật Cải Tiến.",
-            warn: "Đừng để Fagio chạm 100 rồi mới xử lý, vì lúc đó Fagio Quá Tải, bắn chậm hẳn." },
-          { char: "sandrone", actions: ["CA giữ", "Q"],
-            why: "Giữ trọng kích thêm một vòng rồi kết thúc bằng Q khi vẫn còn đứng trong Vùng Trục Sao." },
-        ],
-      },
-    ],
-
     build: {
       stats: [
         { label: "Hiệu quả nạp", target: "160–200%",
@@ -377,28 +308,6 @@ const CHARACTERS = [
         name: "Đặc Chế Mãnh Liệt",
         icon: IMG + "5/57/Talent_Signature_Mix.png/revision/latest",
         desc: "Ném viên đá đặc chế gây ST Băng diện rộng, tạo vùng Hơi Rượu Băng trong 12s. Cứ 2s, vùng gây ST Băng lên quái và hồi máu theo Giới hạn HP cho nhân vật đứng trong vùng. Quái trong vùng bị giảm 10% Tấn Công (nội tại bậc 4). Tốn 80 năng lượng.\nCung Mệnh 6: nhân vật đứng trong vùng còn trên 50% HP được +200 Tinh Thông Nguyên Tố, dưới 50% HP thì được tăng 30% lượng trị liệu nhận vào.",
-      },
-    ],
-
-    teams: [
-      {
-        name: "Tinh-Siêu Dẫn",
-        members: ["sandrone", "alyosha", "diona", "sucrose"],
-        rotation: [
-          { char: "diona", actions: ["E giữ", "Q"],
-            why: "Luôn giữ E để có khiên dày nhất, kèm theo tăng tốc chạy và giảm tiêu hao thể lực. Sau đó bật Q ngay để gắn ấn Băng lên quái và mở vùng hồi máu cho cả đội." },
-          { char: "sucrose", actions: ["E", "Q"],
-            why: "Khuếch tán Băng để gom quái lại gần. Nếu Sucrose mang 4 món Bóng Hình Màu Xanh, quái còn bị giảm Kháng Băng." },
-          { char: "alyosha", actions: ["E", "Q"],
-            why: "Bấm E gắn Dấu Ấn Săn Bắn rồi bật Q gọi Tugarin. Lôi của Alyosha gặp ấn Băng mà Diona vừa gắn sẽ kích hoạt Tinh-Siêu Dẫn và mở ra Vùng Trục Sao." },
-          { char: "sandrone", actions: ["CA giữ"],
-            why: "Giữ trọng kích để Fagio vào chế độ Giải Mã, đứng trong vùng Q của Diona để vừa được hồi máu vừa ăn buff của Vùng Trục Sao. Nếu Diona có Cung Mệnh 6, Sandrone còn được +200 Tinh Thông, mà Tinh Thông lại tăng sát thương Tinh-Siêu Dẫn." },
-          { char: "sandrone", actions: ["E"],
-            why: "Khi Công Suất Giải Mã đã lên cao (trên 50, tốt nhất là gần mốc 100), bấm E để hạ công suất xuống và nhận tầng Chiến Thuật Cải Tiến.",
-            warn: "Đừng để Fagio chạm 100 rồi mới xử lý, vì lúc đó Fagio Quá Tải, bắn chậm hẳn." },
-          { char: "sandrone", actions: ["CA giữ", "Q"],
-            why: "Giữ trọng kích thêm một vòng rồi kết thúc bằng Q khi vẫn còn đứng trong Vùng Trục Sao." },
-        ],
       },
     ],
 
@@ -477,29 +386,6 @@ const CHARACTERS = [
       },
     ],
 
-    teams: [
-      {
-        name: "Tinh-Siêu Dẫn",
-        members: ["sandrone", "alyosha", "diona", "sucrose"],
-        rotation: [
-          { char: "diona", actions: ["E giữ", "Q"],
-            why: "Giữ E để tạo khiên chắc, rồi bật Q để có vùng hồi máu và gắn ấn Băng lên quái." },
-          { char: "sucrose", actions: ["E", "Q"],
-            why: "Bấm E gom quái lại một chỗ, rồi bật Q. Q của Sucrose sẽ hấp thụ Băng từ Diona và khuếch tán ấn Băng trên quái thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s, còn cả đội được cộng Tinh Thông từ Sucrose.",
-            warn: "Nhớ để Diona gắn Băng trước rồi mới ra Sucrose. Nếu Q của Sucrose chạm Lôi trước, phong linh sẽ hấp thụ Lôi và quái chỉ bị giảm Kháng Lôi." },
-          { char: "alyosha", actions: ["E", "Q"],
-            why: "Bấm E gắn Dấu Ấn Săn Bắn rồi bật Q gọi Tugarin. Lôi của Alyosha gặp ấn Băng trên quái sẽ kích hoạt Tinh-Siêu Dẫn và mở ra Vùng Trục Sao." },
-          { char: "sandrone", actions: ["CA giữ"],
-            why: "Giữ trọng kích để Fagio vào chế độ Giải Mã. Lúc này quái vừa bị giảm Kháng Băng, Sandrone lại đang được cộng Tinh Thông từ Sucrose, mà Tinh Thông làm tăng sát thương Tinh-Siêu Dẫn." },
-          { char: "sandrone", actions: ["E"],
-            why: "Khi Công Suất Giải Mã đã lên cao (trên 50, tốt nhất là gần mốc 100), bấm E để hạ công suất xuống và nhận tầng Chiến Thuật Cải Tiến.",
-            warn: "Đừng để Fagio chạm 100 rồi mới xử lý, vì lúc đó Fagio Quá Tải, bắn chậm hẳn." },
-          { char: "sandrone", actions: ["CA giữ", "Q"],
-            why: "Giữ trọng kích thêm một vòng rồi kết thúc bằng Q khi vẫn còn đứng trong Vùng Trục Sao." },
-        ],
-      },
-    ],
-
     build: {
       stats: [
         { label: "Tinh Thông Nguyên Tố", target: "400–600+",
@@ -566,26 +452,6 @@ const CHARACTERS = [
         name: "Phân Tích - Nguyên Lý Biến Đổi",
         icon: IMG + "d/df/Talent_Analysis_Gradient_Theory.png/revision/latest",
         desc: "Gây ST Lôi diện rộng (theo cả Tấn Công lẫn Tinh Thông) và tạo ngay 3 Tín Hiệu Biến Đổi. Tốn 60 năng lượng, hồi chiêu 15s.\nTín hiệu tồn tại 10s. Mỗi lần tạo tín hiệu, Mitya được +5% Tỷ Lệ Bạo Kích trong 15s, cộng dồn tối đa 4 lần (nội tại bậc 4).",
-      },
-    ],
-
-    teams: [
-      {
-        name: "Tinh-Siêu Dẫn",
-        members: ["mitya", "sandrone", "odette", "alyosha"],
-        rotation: [
-          { char: "odette", actions: ["E", "Q"],
-            why: "E gọi bóng múa của Odette ra sân, liên tục gây ST Băng diện rộng. Nhờ vậy quái luôn có ấn Băng để Lôi của Alyosha và Mitya kích hoạt Tinh-Siêu Dẫn." },
-          { char: "alyosha", actions: ["E", "Q"],
-            why: "Bấm E gắn Dấu Ấn Săn Bắn rồi bật Q gọi Tugarin. Tugarin cắn trúng quái có dấu sẽ tăng Tấn Công cho nhân vật đứng sân, Lôi của Alyosha gặp ấn Băng thì kích hoạt Tinh-Siêu Dẫn." },
-          { char: "sandrone", actions: ["E", "Q"],
-            why: "Sandrone xả E và Q để gây ST Băng diện rộng, tiếp tục kích hoạt Tinh-Siêu Dẫn. Với Mitya trong đội, mỗi lần Tinh-Siêu Dẫn sẽ tạo Tín Hiệu Biến Đổi cho Mitya nhặt." },
-          { char: "mitya", actions: ["E giữ", "Q"],
-            why: "Dùng E để tạo Lõi Dò Tìm ở trạng thái Quá Tải, rồi bật Q để có ngay 3 Tín Hiệu Biến Đổi. Mỗi tín hiệu còn cộng thêm Tỷ Lệ Bạo Kích cho Mitya.",
-            warn: "Lõi phải ở trạng thái Quá Tải thì Trọng Kích mới đổi thành Kích Nổ Biến Đổi. Nếu lõi đang ở trạng thái Ổn Định, bấm E thêm một lần trong 6s để đổi trạng thái." },
-          { char: "mitya", actions: ["CA giữ"],
-            why: "Giữ trọng kích để xả Kích Nổ Biến Đổi, tiêu hết số tín hiệu đang mang. Mỗi tín hiệu là một đòn ST Lôi tính là sát thương Tinh-Siêu Dẫn. Trong lúc đó đồng đội tiếp tục kích hoạt Tinh-Siêu Dẫn sẽ nạp thêm tín hiệu cho Mitya." },
-        ],
       },
     ],
 
@@ -660,42 +526,6 @@ const CHARACTERS = [
         name: "Nhịp Nhanh - Mộng Ước Cánh Chim Xanh",
         icon: IMG + "5/5a/Talent_Presto_Bluebird_Finale.png/revision/latest",
         desc: "Nhảy dồn dập, gây nhiều lần ST Băng diện rộng, gọi Bóng Hình Độc Diễn về cạnh mình và làm mới thời gian của nó. Odette nhận Giấc Mơ Thiên Nga Tuyết trong 20s, tăng sát thương Tinh Tú Lấp Lánh do mình gây ra. Tốn 60 năng lượng, hồi chiêu 15s.",
-      },
-    ],
-
-    teams: [
-      {
-        name: "Tinh-Siêu Dẫn",
-        members: ["odette", "sandrone", "alyosha", "sucrose"],
-        rotation: [
-          { char: "odette", actions: ["E"],
-            why: "Gây ST Băng diện rộng và gọi Bóng Hình Độc Diễn ra sân để bắt đầu gắn Băng từ ngoài sân. Mỗi lần gọi Bóng Hình, Odette nhận 4 tầng Lộng Lẫy." },
-          { char: "sucrose", actions: ["E", "Q"],
-            why: "Gom quái lại gần nhau và khuếch tán ấn Băng từ Bóng Hình thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s." },
-          { char: "alyosha", actions: ["E", "Q"],
-            why: "Bấm E gắn Dấu Ấn Săn Bắn rồi bật Q gọi Tugarin, Alyosha đánh Lôi từ ngoài sân. Lôi gặp ấn Băng có sẵn sẽ liên tục kích hoạt Tinh-Siêu Dẫn, còn Tugarin cắn trúng quái có dấu thì tăng Tấn Công cho nhân vật đứng sân." },
-          { char: "odette", actions: ["Q", "E"],
-            why: "Bật Q để gọi lại Bóng Hình (nhận lại 4 tầng Lộng Lẫy) và có Giấc Mơ Thiên Nga Tuyết, rồi bấm E ngay để dùng Đoạn Kết Ánh Bình Minh, múa đôi xả ST Băng liên tục cùng Lôi của Alyosha.",
-            warn: "Đừng chậm quá 6s sau Q, vì hết khoảng đó E quay về bản thường và mất đòn Đoạn Kết Ánh Bình Minh." },
-          { char: "sandrone", actions: ["E", "Q", "CA giữ"],
-            why: "Đổi Sandrone ra sân để nhận dần các tầng Lộng Lẫy từ Odette, rồi xả E, Q và giữ trọng kích. Bóng Hình của Odette và Tugarin của Alyosha vẫn đánh từ ngoài sân, giữ cho Tinh-Siêu Dẫn nổ liên tục." },
-        ],
-      },
-      {
-        name: "Tinh-Khuếch Tán",
-        members: ["mizuki", "odette", "traveler-cryo", "sucrose"],
-        rotation: [
-          { char: "traveler-cryo", actions: ["E", "Q"],
-            why: "E tạo một ngôi sao băng đi theo đội, định kỳ bắn tinh thể băng gây ST Băng từ ngoài sân, nhờ vậy quái luôn có ấn Băng để Phong khuếch tán. Sau đó bật Q." },
-          { char: "sucrose", actions: ["E", "Q"],
-            why: "Gom quái lại một chỗ và khuếch tán Băng thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s." },
-          { char: "odette", actions: ["Q", "E"],
-            why: "Bật Q để gọi Bóng Hình Độc Diễn (nhận 4 tầng Lộng Lẫy) và có Giấc Mơ Thiên Nga Tuyết, rồi bấm E ngay để dùng Đoạn Kết Ánh Bình Minh. Đòn kết thúc của điệu múa đôi tính là sát thương Tinh-Khuếch Tán.",
-            warn: "Đừng chậm quá 6s sau Q, vì hết khoảng đó E quay về bản thường và mất đòn Đoạn Kết Ánh Bình Minh." },
-          { char: "mizuki", actions: ["E"],
-            why: "Đổi Mizuki ra sân, bấm E để vào trạng thái Mộng Trôi: Mizuki lơ lửng trôi về phía trước, liên tục gây ST Phong và khuếch tán Băng thành Tinh-Khuếch Tán. Trong trạng thái này, cả đội được tăng ST Tinh-Khuếch Tán theo Tinh Thông của Mizuki, còn Mizuki nhận dần các tầng Lộng Lẫy từ Odette.",
-            warn: "Trong trạng thái Mộng Trôi, Mizuki không đánh thường hay trọng kích được, chỉ cần điều khiển hướng trôi cho trúng quái." },
-        ],
       },
     ],
 
@@ -781,25 +611,6 @@ const CHARACTERS = [
       },
     ],
 
-    teams: [
-      {
-        name: "Tinh-Khuếch Tán",
-        members: ["mizuki", "odette", "traveler-cryo", "sucrose"],
-        rotation: [
-          { char: "traveler-cryo", actions: ["E", "Q"],
-            why: "E tạo một ngôi sao băng đi theo đội, định kỳ bắn tinh thể băng gây ST Băng từ ngoài sân, nhờ vậy quái luôn có ấn Băng để Phong khuếch tán. Sau đó bật Q." },
-          { char: "sucrose", actions: ["E", "Q"],
-            why: "Gom quái lại một chỗ và khuếch tán Băng thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s." },
-          { char: "odette", actions: ["Q", "E"],
-            why: "Bật Q để gọi Bóng Hình Độc Diễn (nhận 4 tầng Lộng Lẫy), rồi bấm E ngay để dùng Đoạn Kết Ánh Bình Minh. Khi Odette rời sân, các tầng Lộng Lẫy sẽ chuyển dần cho Mizuki.",
-            warn: "Đừng chậm quá 6s sau Q, vì hết khoảng đó E quay về bản thường." },
-          { char: "mizuki", actions: ["Q", "E"],
-            why: "Bật Q để hút quái lại và gọi Mini Baku, rồi bấm E vào Mộng Trôi. Lúc này Mizuki liên tục khuếch tán ấn Băng từ Odette và Nhà Lữ Hành thành Tinh-Khuếch Tán, mỗi lần khuếch tán còn kéo dài Mộng Trôi thêm 2.5s.",
-            warn: "Trong Mộng Trôi, Mizuki không đánh thường hay trọng kích được, chỉ cần điều khiển hướng trôi cho trúng quái." },
-        ],
-      },
-    ],
-
     build: {
       stats: [
         { label: "Tinh Thông Nguyên Tố", target: "~500–600+",
@@ -842,4 +653,107 @@ const CHARACTERS = [
     icon: IMG + "7/79/Bennett_Icon.png/revision/latest" },
   { id: "citlali", name: "Citlali", rarity: 5, element: "cryo", weapon: "catalyst", role: "Support", region: "Natlan",
     icon: IMG + "d/dd/Citlali_Icon.png/revision/latest" },
+];
+
+// =============================================================
+//  ĐỘI HÌNH – mỗi đội ghi một lần, tự hiện ở trang của mọi thành viên.
+//  members[0] là chủ lực: ở trang chủ lực, đội này lên đầu và mở sẵn.
+// =============================================================
+const TEAMS = [
+  {
+    name: "Tan Chảy · Mavuika",
+    members: ["mavuika", "xilonen", "bennett", "citlali"],
+    video: { title: "Mavuika combo guide from basic to advanced – NDC Impact", url: "" },
+    rotation: [
+      { char: "mavuika", actions: ["E"],
+        why: "Tiêu hao Dạ Hồn, kích hoạt ấn Hỏa từ off-field." },
+      { char: "xilonen", actions: ["E", "BA x2"],
+        why: "Giảm kháng nguyên tố của quái và kích buff thánh di vật. Có thể dùng Q nếu cần hồi máu." },
+      { char: "bennett", actions: ["Q"],
+        why: "Tạo vùng hồi máu và buff tấn công lớn. Có thể dùng E trước Q." },
+      { char: "citlali", actions: ["E", "Q"],
+        why: "E tạo khiên. Q có ấn Băng mạnh (2U), xóa ấn Hỏa của Bennett và liên tục gắn lại ấn Băng lên quái.",
+        warn: "Nhớ bấm Q ngay sau E, hoặc đảo lại: Q trước rồi mới E. Nếu để Citlali đứng sân lâu quá, Vòng Hào Quang của Mavuika sẽ kịp gắn Hỏa lên quái trước, và Q của Citlali không còn phủ được ấn Băng nữa." },
+      { char: "mavuika", actions: ["Q", "BA"],
+        why: "Vừa đổi ra là bấm Q ngay, sau đó đánh thường 1 cái (hoặc lướt xe) để bộ 4 món Bí Điển Obsidian kích hoạt, cộng thêm 40% tỷ lệ bạo kích.",
+        warn: "Đừng chậm tay ở bước này, vì Vòng Hào Quang từ bước 1 có thể nổ trúng quái và lấy mất ấn Băng. Cũng đừng giữ trọng kích ngay sau Q, vì vài đòn đầu có thể chưa được cộng 40% bạo kích." },
+      { char: "mavuika", actions: ["CA giữ"],
+        why: "Giữ trọng kích xoay cho đến khi hết Lò Lửa Sinh Tử." },
+    ],
+  },
+
+  {
+    name: "Tinh-Siêu Dẫn · Sandrone",
+    members: ["sandrone", "alyosha", "diona", "sucrose"],
+    rotation: [
+      { char: "diona", actions: ["E giữ", "Q"],
+        why: "Luôn giữ E để có khiên dày nhất, kèm theo tăng tốc chạy và giảm tiêu hao thể lực. Sau đó bật Q ngay để gắn ấn Băng lên quái và mở vùng hồi máu cho cả đội." },
+      { char: "sucrose", actions: ["E", "Q"],
+        why: "Bấm E gom quái lại một chỗ, rồi bật Q. Q của Sucrose sẽ hấp thụ Băng từ Diona và khuếch tán ấn Băng trên quái thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s, còn cả đội được cộng Tinh Thông từ Sucrose.",
+        warn: "Nhớ để Diona gắn Băng trước rồi mới ra Sucrose. Nếu Q của Sucrose chạm Lôi trước, phong linh sẽ hấp thụ Lôi và quái chỉ bị giảm Kháng Lôi." },
+      { char: "alyosha", actions: ["E", "Q"],
+        why: "Bấm E trước để gắn Dấu Ấn Săn Bắn lên quái, rồi bật Q gọi Tugarin. Từ đây Tugarin cắn trúng quái có dấu sẽ kích hoạt dấu, tăng Tấn Công cho Sandrone, và Lôi của Alyosha gặp ấn Băng có sẵn sẽ mở ra Vùng Trục Sao.",
+        warn: "Đừng bật Q trước E. Lúc đó quái chưa có dấu nên mấy phát cắn đầu của Tugarin không kích hoạt được gì, phí mất một đoạn buff." },
+      { char: "sandrone", actions: ["CA giữ"],
+        why: "Giữ trọng kích để Fagio vào chế độ Giải Mã, liên tục phóng Tia Ngưng Tụ, đứng trong vùng Q của Diona để vừa được hồi máu vừa ăn buff của Vùng Trục Sao. Lúc này Sandrone được tăng Tấn Công từ Mệnh Lệnh Thợ Săn, cả đội được thêm 20% ST Tinh-Siêu Dẫn nhờ Alyosha, quái bị giảm Kháng Băng, còn Tinh Thông chia từ Sucrose (và +200 nếu Diona có Cung Mệnh 6) làm tăng sát thương Tinh-Siêu Dẫn." },
+      { char: "sandrone", actions: ["E"],
+        why: "Khi Công Suất Giải Mã đã lên cao (trên 50, tốt nhất là gần mốc 100), bấm E để hạ công suất xuống. Nhờ nội tại, viên Đạn Lăng Kính thứ hai sẽ gây 400% sát thương, và cứ mỗi 10 điểm công suất giảm, Sandrone nhận 1 tầng Chiến Thuật Cải Tiến.",
+        warn: "Đừng để Fagio chạm 100 rồi mới xử lý. Lúc đó Fagio Quá Tải, bắn chậm hẳn và không vào lại Giải Mã được cho tới khi công suất tụt dưới 50." },
+      { char: "sandrone", actions: ["CA giữ", "Q"],
+        why: "Giữ trọng kích thêm một vòng nữa, rồi kết thúc bằng Q khi vẫn còn đứng trong Vùng Trục Sao. Q lúc này dùng hết số tầng Chiến Thuật Cải Tiến, mỗi tầng cộng thêm 10% sát thương cho chùm tia cuối." },
+    ],
+  },
+
+  {
+    name: "Tinh-Siêu Dẫn · Mitya",
+    members: ["mitya", "sandrone", "odette", "alyosha"],
+    rotation: [
+      { char: "odette", actions: ["E", "Q"],
+        why: "E gọi Bóng Hình Độc Diễn ra sân, liên tục gây ST Băng diện rộng. Nhờ vậy quái luôn có ấn Băng để Lôi của Alyosha và Mitya kích hoạt Tinh-Siêu Dẫn. Mỗi lần gọi Bóng Hình, Odette nhận 4 tầng Lộng Lẫy và sẽ chuyển dần cho Mitya khi rời sân." },
+      { char: "alyosha", actions: ["E", "Q"],
+        why: "Bấm E gắn Dấu Ấn Săn Bắn rồi bật Q gọi Tugarin. Tugarin cắn trúng quái có dấu sẽ tăng Tấn Công cho nhân vật đứng sân, Lôi của Alyosha gặp ấn Băng thì kích hoạt Tinh-Siêu Dẫn." },
+      { char: "sandrone", actions: ["E", "Q"],
+        why: "Sandrone xả E và Q để gây ST Băng diện rộng, tiếp tục kích hoạt Tinh-Siêu Dẫn. Với Mitya trong đội, mỗi lần Tinh-Siêu Dẫn sẽ tạo Tín Hiệu Biến Đổi cho Mitya nhặt." },
+      { char: "mitya", actions: ["E giữ", "Q"],
+        why: "Dùng E để tạo Lõi Dò Tìm ở trạng thái Quá Tải, rồi bật Q để có ngay 3 Tín Hiệu Biến Đổi. Mỗi tín hiệu còn cộng thêm Tỷ Lệ Bạo Kích cho Mitya.",
+        warn: "Lõi phải ở trạng thái Quá Tải thì Trọng Kích mới đổi thành Kích Nổ Biến Đổi. Nếu lõi đang ở trạng thái Ổn Định, bấm E thêm một lần trong 6s để đổi trạng thái." },
+      { char: "mitya", actions: ["CA giữ"],
+        why: "Giữ trọng kích để xả Kích Nổ Biến Đổi, tiêu hết số tín hiệu đang mang. Mỗi tín hiệu là một đòn ST Lôi tính là sát thương Tinh-Siêu Dẫn, lại được tăng thêm nhờ các tầng Lộng Lẫy từ Odette. Trong lúc đó đồng đội tiếp tục kích hoạt Tinh-Siêu Dẫn sẽ nạp thêm tín hiệu cho Mitya." },
+    ],
+  },
+
+  {
+    name: "Tinh-Siêu Dẫn · Odette",
+    members: ["odette", "sandrone", "alyosha", "sucrose"],
+    rotation: [
+      { char: "odette", actions: ["E"],
+        why: "Gây ST Băng diện rộng và gọi Bóng Hình Độc Diễn ra sân để bắt đầu gắn Băng từ ngoài sân. Mỗi lần gọi Bóng Hình, Odette nhận 4 tầng Lộng Lẫy." },
+      { char: "sucrose", actions: ["E", "Q"],
+        why: "Gom quái lại gần nhau và khuếch tán ấn Băng từ Bóng Hình thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s." },
+      { char: "alyosha", actions: ["E", "Q"],
+        why: "Bấm E gắn Dấu Ấn Săn Bắn rồi bật Q gọi Tugarin, Alyosha đánh Lôi từ ngoài sân. Lôi gặp ấn Băng có sẵn sẽ liên tục kích hoạt Tinh-Siêu Dẫn, còn Tugarin cắn trúng quái có dấu thì tăng Tấn Công cho nhân vật đứng sân." },
+      { char: "odette", actions: ["Q", "E"],
+        why: "Bật Q để gọi lại Bóng Hình (nhận lại 4 tầng Lộng Lẫy) và có Giấc Mơ Thiên Nga Tuyết, rồi bấm E ngay để dùng Đoạn Kết Ánh Bình Minh, múa đôi xả ST Băng liên tục cùng Lôi của Alyosha.",
+        warn: "Đừng chậm quá 6s sau Q, vì hết khoảng đó E quay về bản thường và mất đòn Đoạn Kết Ánh Bình Minh." },
+      { char: "sandrone", actions: ["E", "Q", "CA giữ"],
+        why: "Đổi Sandrone ra sân để nhận dần các tầng Lộng Lẫy từ Odette (mỗi giây một tầng, mỗi tầng +15% sát thương Tinh Tú Lấp Lánh), rồi xả E, Q và giữ trọng kích. Bóng Hình của Odette và Tugarin của Alyosha vẫn đánh từ ngoài sân, giữ cho Tinh-Siêu Dẫn nổ liên tục." },
+    ],
+  },
+
+  {
+    name: "Tinh-Khuếch Tán · Mizuki",
+    members: ["mizuki", "odette", "traveler-cryo", "sucrose"],
+    rotation: [
+      { char: "traveler-cryo", actions: ["E", "Q"],
+        why: "E tạo một ngôi sao băng đi theo đội, định kỳ bắn tinh thể băng gây ST Băng từ ngoài sân, nhờ vậy quái luôn có ấn Băng để Phong khuếch tán. Sau đó bật Q." },
+      { char: "sucrose", actions: ["E", "Q"],
+        why: "Gom quái lại một chỗ và khuếch tán Băng thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s." },
+      { char: "odette", actions: ["Q", "E"],
+        why: "Bật Q để gọi Bóng Hình Độc Diễn (nhận 4 tầng Lộng Lẫy) và có Giấc Mơ Thiên Nga Tuyết, rồi bấm E ngay để dùng Đoạn Kết Ánh Bình Minh. Đòn kết thúc của điệu múa đôi tính là sát thương Tinh-Khuếch Tán. Khi Odette rời sân, các tầng Lộng Lẫy sẽ chuyển dần cho Mizuki.",
+        warn: "Đừng chậm quá 6s sau Q, vì hết khoảng đó E quay về bản thường và mất đòn Đoạn Kết Ánh Bình Minh." },
+      { char: "mizuki", actions: ["Q", "E"],
+        why: "Bật Q để hút quái lại và gọi Mini Baku, rồi bấm E vào Mộng Trôi. Lúc này Mizuki liên tục khuếch tán ấn Băng từ Odette và Nhà Lữ Hành thành Tinh-Khuếch Tán, mỗi lần khuếch tán còn kéo dài Mộng Trôi thêm 2.5s. Trong trạng thái này, cả đội được tăng ST Tinh-Khuếch Tán theo Tinh Thông của Mizuki.",
+        warn: "Trong Mộng Trôi, Mizuki không đánh thường hay trọng kích được, chỉ cần điều khiển hướng trôi cho trúng quái." },
+    ],
+  },
 ];

@@ -1,6 +1,6 @@
 // Kiểm tra site/data.js. Dùng chung cho tools/check.html (trình duyệt) và tools/validate.mjs (Node / GitHub Actions).
 (function (root) {
-  function validateData({ ACTIONS, ELEMENTS, WEAPONS, CHARACTERS, GLOSSARY }) {
+  function validateData({ ACTIONS, ELEMENTS, WEAPONS, CHARACTERS, GLOSSARY, TEAMS }) {
     const errors = [], warnings = [];
     const err = (where, msg) => errors.push(`${where}: ${msg}`);
     const warn = (where, msg) => warnings.push(`${where}: ${msg}`);
@@ -48,22 +48,7 @@
         if (!ACTIONS[s.key]) err(`${at} › skills[${i + 1}]`, `phím "${s.key}" không có trong ACTIONS`);
         if (!s.name) warn(`${at} › skills[${i + 1}]`, "thiếu name");
       });
-      (c.teams || []).forEach((t, ti) => {
-        const tat = `${at} › đội "${t.name || ti + 1}"`;
-        if (!t.name) warn(tat, "thiếu tên đội");
-        const members = t.members || [];
-        if (members.length !== 4) warn(tat, `đội có ${members.length} người (thường là 4)`);
-        members.forEach(m => { if (!ids.has(m)) err(tat, `thành viên "${m}" chưa có trong CHARACTERS`); });
-        if (t.video && t.video.url && !isUrl(t.video.url)) err(tat, "video.url không phải URL https");
-        (t.rotation || []).forEach((r, ri) => {
-          const rat = `${tat} › bước ${ri + 1}`;
-          if (!ids.has(r.char)) err(rat, `nhân vật "${r.char}" chưa có trong CHARACTERS`);
-          else if (!members.includes(r.char)) warn(rat, `"${r.char}" không nằm trong đội`);
-          if (!Array.isArray(r.actions) || !r.actions.length) err(rat, "thiếu actions");
-          else r.actions.forEach(a => { if (!ACTIONS[baseKey(a)]) err(rat, `thao tác "${a}" không có trong ACTIONS (${Object.keys(ACTIONS).join(", ")})`); });
-          if (!r.why) warn(rat, "chưa có giải thích (why)");
-        });
-      });
+      if (c.teams) err(at, "đội hình giờ ghi trong TEAMS (cuối data.js), không ghi trong nhân vật nữa");
       (c.skills || []).forEach((s, i) => { if (s.icon && !isUrl(s.icon)) err(`${at} › skills[${i + 1}]`, "icon không phải URL https"); });
       const b = c.build;
       if (b) {
@@ -80,6 +65,32 @@
         });
       }
     });
+
+    if (TEAMS === undefined) warn("data.js", "chưa có TEAMS (danh sách đội hình)");
+    else if (!Array.isArray(TEAMS)) err("TEAMS", "phải là mảng [...]");
+    else {
+      const names = new Set();
+      TEAMS.forEach((t, ti) => {
+        const tat = `Đội "${(t && t.name) || ti + 1}"`;
+        if (!t || typeof t !== "object") return err(tat, "không phải object {...}");
+        if (!t.name) warn(tat, "thiếu tên đội");
+        else if (names.has(t.name)) err(tat, "tên đội bị trùng");
+        names.add(t.name);
+        const members = t.members || [];
+        if (members.length !== 4) warn(tat, `đội có ${members.length} người (thường là 4)`);
+        members.forEach(m => { if (!ids.has(m)) err(tat, `thành viên "${m}" chưa có trong CHARACTERS`); });
+        if (t.video && t.video.url && !isUrl(t.video.url)) err(tat, "video.url không phải URL https");
+        if (!(t.rotation || []).length) err(tat, "thiếu rotation");
+        (t.rotation || []).forEach((r, ri) => {
+          const rat = `${tat} › bước ${ri + 1}`;
+          if (!ids.has(r.char)) err(rat, `nhân vật "${r.char}" chưa có trong CHARACTERS`);
+          else if (!members.includes(r.char)) warn(rat, `"${r.char}" không nằm trong đội`);
+          if (!Array.isArray(r.actions) || !r.actions.length) err(rat, "thiếu actions");
+          else r.actions.forEach(a => { if (!ACTIONS[baseKey(a)]) err(rat, `thao tác "${a}" không có trong ACTIONS (${Object.keys(ACTIONS).join(", ")})`); });
+          if (!r.why) warn(rat, "chưa có giải thích (why)");
+        });
+      });
+    }
 
     return { errors, warnings };
   }
