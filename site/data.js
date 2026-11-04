@@ -745,9 +745,95 @@ const CHARACTERS = [
     notes: [],
   },
 
+  {
+    id: "mizuki",
+    name: "Mizuki",
+    title: "Ảo Mộng Trùng Điệp",
+    rarity: 5,
+    element: "anemo",
+    weapon: "catalyst",
+    role: "Main DPS",
+    region: "Inazuma",
+    icon: IMG + "f/f6/Yumemizuki_Mizuki_Icon.png/revision/latest",
+
+    summary:
+      "Yumemizuki Mizuki, DPS Phong đứng sân dựa vào phản ứng Khuếch Tán. E đưa Mizuki vào trạng thái Mộng Trôi: lơ lửng trôi về phía trước, liên tục gây ST Phong quanh mình, đồng thời tăng sát thương Khuếch Tán và Tinh-Khuếch Tán của cả đội theo Tinh Thông của Mizuki. Q hút quái và gọi Mini Baku rải đồ ăn vặt vừa nổ ST Phong vừa hồi máu.",
+
+    // Tên + icon kỹ năng: genshin-impact.fandom.com/vi/wiki/Yumemizuki_Mizuki
+    skills: [
+      {
+        key: "BA",
+        name: "Giấc Mơ Thuần Khiết",
+        icon: IMG + "d/dd/Catalyst_Anemo.png/revision/latest",
+        desc: "Tấn Công Thường tối đa 3 đòn ST Phong. Trọng Kích tiêu hao thể lực, tụ lực rồi gây ST Phong diện rộng.",
+      },
+      {
+        key: "E",
+        name: "Hành Trình Aisa Utamakura",
+        icon: IMG + "5/54/Talent_Aisa_Utamakura_Pilgrimage.png/revision/latest",
+        desc: "Gây ST Phong diện rộng và vào trạng thái Mộng Trôi (5s): Mizuki lơ lửng trôi về phía trước, điều khiển được hướng, định kỳ gây ST Phong quanh mình. Trong lúc này cả đội được tăng sát thương Khuếch Tán theo Tinh Thông của Mizuki. Rời sân hoặc bấm E lần nữa thì kết thúc. Hồi chiêu 15s.\nMỗi lần khuếch tán trong Mộng Trôi kéo dài thêm 2.5s, tối đa 2 lần (nội tại bậc 1). Đồng đội đánh Hỏa, Thủy, Băng, Lôi trúng quái thì Mizuki +100 Tinh Thông trong 4s (nội tại bậc 4).",
+      },
+      {
+        key: "Q",
+        name: "Liệu Pháp Bí Truyền Anraku",
+        icon: IMG + "b/bc/Talent_Anraku_Secret_Spring_Therapy.png/revision/latest",
+        desc: "Hút quái và vật thể lại gần, gây ST Phong diện rộng và gọi Mini Baku đi theo nhân vật đứng sân trong 12s. Mini Baku định kỳ tạo Đồ Ăn Vặt Yumemi: người nhặt còn trên 70% HP thì đồ ăn nổ gây ST Phong, còn không thì hồi máu theo Tinh Thông của Mizuki. Tốn 60 năng lượng.",
+      },
+    ],
+
+    teams: [
+      {
+        name: "Tinh-Khuếch Tán",
+        members: ["mizuki", "odette", "traveler-cryo", "sucrose"],
+        rotation: [
+          { char: "traveler-cryo", actions: ["E", "Q"],
+            why: "E tạo một ngôi sao băng đi theo đội, định kỳ bắn tinh thể băng gây ST Băng từ ngoài sân, nhờ vậy quái luôn có ấn Băng để Phong khuếch tán. Sau đó bật Q." },
+          { char: "sucrose", actions: ["E", "Q"],
+            why: "Gom quái lại một chỗ và khuếch tán Băng thành Tinh-Khuếch Tán. Với 4 món Bóng Hình Màu Xanh, quái bị giảm 40% Kháng Băng trong 10s." },
+          { char: "odette", actions: ["Q", "E"],
+            why: "Bật Q để gọi Bóng Hình Độc Diễn (nhận 4 tầng Lộng Lẫy), rồi bấm E ngay để dùng Đoạn Kết Ánh Bình Minh. Khi Odette rời sân, các tầng Lộng Lẫy sẽ chuyển dần cho Mizuki.",
+            warn: "Đừng chậm quá 6s sau Q, vì hết khoảng đó E quay về bản thường." },
+          { char: "mizuki", actions: ["Q", "E"],
+            why: "Bật Q để hút quái lại và gọi Mini Baku, rồi bấm E vào Mộng Trôi. Lúc này Mizuki liên tục khuếch tán ấn Băng từ Odette và Nhà Lữ Hành thành Tinh-Khuếch Tán, mỗi lần khuếch tán còn kéo dài Mộng Trôi thêm 2.5s.",
+            warn: "Trong Mộng Trôi, Mizuki không đánh thường hay trọng kích được, chỉ cần điều khiển hướng trôi cho trúng quái." },
+        ],
+      },
+    ],
+
+    build: {
+      stats: [
+        { label: "Tinh Thông Nguyên Tố", target: "~500–600+",
+          note: "Mộng Trôi tăng sát thương Khuếch Tán của cả đội theo Tinh Thông của Mizuki, và Tinh Thông cũng làm tăng sát thương Tinh-Khuếch Tán. Mizuki đột phá cũng tăng Tinh Thông." },
+        { label: "Hiệu quả nạp", target: "~120–130%",
+          note: "Q chỉ tốn 60 năng lượng, có Sucrose đi kèm nên không cần quá nhiều nạp." },
+      ],
+      artifacts: [
+        { set: "Bóng Hình Màu Xanh", pieces: 4,
+          icon: IMG + "9/90/Item_In_Remembrance_of_Viridescent_Fields.png/revision/latest",
+          note: "2 món: +15% ST Phong.\n4 món: ST Khuếch Tán +60%, ST Tinh-Khuếch Tán +20%. Quái bị khuếch tán nguyên tố nào thì giảm 40% kháng nguyên tố đó trong 10s, Tinh-Khuếch Tán thì giảm 40% Kháng Băng." },
+      ],
+      mainStats: [
+        { slot: "Đồng hồ", stat: "Tinh Thông Nguyên Tố" },
+        { slot: "Ly",      stat: "Tinh Thông Nguyên Tố", note: "Tăng ST Phong chỉ làm đòn đánh của chính Mizuki mạnh hơn, không tăng sát thương Khuếch Tán." },
+        { slot: "Nón",     stat: "Tinh Thông Nguyên Tố", note: "Sát thương Khuếch Tán bình thường không bạo kích được, nên dòng bạo kích ít tác dụng." },
+      ],
+      weapons: [
+        { tier: "Trấn", name: "Hòa Giấc Trong Nắng Mai",
+          icon: IMG + "9/91/Weapon_Sunny_Morning_Sleep-In.png/revision/latest",
+          note: "Pháp khí 5★ riêng của Mizuki, dòng phụ Tinh Thông. Kích hoạt Khuếch Tán thì +120 Tinh Thông, E trúng quái thêm +96, Q trúng quái thêm +32." },
+        { tier: "4★", name: "Sao Đêm Rong Ruổi",
+          icon: IMG + "4/44/Weapon_Wandering_Evenstar.png/revision/latest",
+          note: "Dòng phụ Tinh Thông. Định kỳ đổi một phần Tinh Thông thành Tấn Công cho bản thân và đồng đội." },
+        { tier: "4★", name: "Mảnh Chương Tế Lễ",
+          icon: IMG + "6/6c/Weapon_Sacrificial_Fragments.png/revision/latest",
+          note: "Dòng phụ Tinh Thông rất cao. E có 40% tỷ lệ làm mới hồi chiêu (R1)." },
+      ],
+    },
+
+    notes: [],
+  },
+
   // ---- Nhân vật phụ: điền thêm build / rotation sau ----
-  { id: "mizuki",  name: "Mizuki", rarity: 5, element: "anemo", weapon: "catalyst", role: "Main DPS", region: "Inazuma",
-    icon: IMG + "f/f6/Yumemizuki_Mizuki_Icon.png/revision/latest" },
   { id: "traveler-cryo", name: "Nhà Lữ Hành (Băng)", rarity: 5, element: "cryo", weapon: "sword", role: "Sub-DPS", region: "Snezhnaya",
     icon: IMG + "5/59/Traveler_Icon.png/revision/latest" },
   { id: "xilonen", name: "Xilonen", rarity: 5, element: "geo",  weapon: "sword",    role: "Support", region: "Natlan",
